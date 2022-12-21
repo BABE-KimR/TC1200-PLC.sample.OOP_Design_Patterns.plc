@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_TempSensor" Id="{d20820a4-0d8a-43f0-b4e4-a3d10b2764cf}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT tempSensor
+VAR
+	rawValue			AT %I*	: INT;		// resistance measurement value of sensor
+END_VAR
+(*~
+<docu>
+	<summary>
+			Abstract implementation of a Temperature sensor class
+			Usage as follows :
+			<code>
+				FUNCTION_BLOCK concreteTempSensor EXTENDS tempSensor
+			</code>
+	</summary>				
+</docu>	
+~*)	]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="FB_TempSensor">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

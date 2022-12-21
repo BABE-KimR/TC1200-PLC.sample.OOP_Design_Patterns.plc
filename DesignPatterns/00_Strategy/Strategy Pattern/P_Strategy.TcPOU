@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="P_Strategy" Id="{71eab6f8-9f1c-4cb6-8e46-fa257ca9189d}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_Strategy
+VAR
+	fbSensor1		: FB_PT100;
+	fbMotor1		: FB_Motor_PT(TempSensor := fbSensor1);
+	fbSensor2		: FB_PT1000;
+	fbMotor2		: FB_Motor_PT(fbSensor2);
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Motors
+fbSensor1();
+fbMotor1();	
+fbSensor2();
+fbMotor2();	
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="P_Strategy">
+      <LineId Id="107" Count="0" />
+      <LineId Id="155" Count="3" />
+      <LineId Id="140" Count="0" />
+      <LineId Id="86" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
