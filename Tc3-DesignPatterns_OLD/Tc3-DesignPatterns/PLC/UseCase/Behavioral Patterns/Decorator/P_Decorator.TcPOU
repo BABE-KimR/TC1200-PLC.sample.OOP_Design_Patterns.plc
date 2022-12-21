@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="P_Decorator" Id="{8081ffa8-7281-40f4-a0a4-0ae6a00ba4ae}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_Decorator
+VAR
+	ErrorString				: STRING;
+	stringBuilder			: StringBuilder;
+	ErrorNumber				: INT := 1;
+	ErrorMessage			: STRING := 'This is my error message';
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ErrorString := stringBuilder
+					.Clear()
+					.Append('Error number: ')
+					.Append(INT_TO_STRING(ErrorNumber))
+					.Append('. Message: ')
+					.Append(ErrorMessage)
+					.Append('.')
+					.ToString();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

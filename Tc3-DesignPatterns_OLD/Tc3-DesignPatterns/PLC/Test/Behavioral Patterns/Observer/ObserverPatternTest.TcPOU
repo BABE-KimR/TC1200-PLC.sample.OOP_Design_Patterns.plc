@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="ObserverPatternTest" Id="{6c2f064c-ef82-4598-b3f2-14fb60886f9a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ObserverPatternTest EXTENDS tcUnit.FB_TestSuite
+VAR
+	// Unit test use the implementation of the use case so both 
+	// base blocks and use case blocks are tested at once
+	eventPublisher					: EventPublisherWithInheritance;
+	//eventSubscriber					: ARRAY[1..param.MaxObservers+1] OF FB_EventSubscriber[(eventPublisher),(eventPublisher),(0),(0),(0),(0)];	// Max + 1 for unit test	// Pass the interface reference to the instances is not possible?	
+	eventSubscriber					: ARRAY[1..param.MaxObservers+1] OF FB_EventSubscriber(0);	// Max + 1 for unit test	// Pass the interface reference to the instances is not possible?	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ObservableAttachesAnObserver();
+ObservableAttachesASecondObserver();
+ObservableAttachesTooMuchObservers();
+ObserverFetchesCorrectData();]]></ST>
+    </Implementation>
+    <Method Name="ObservableAttachesAnObserver" Id="{00594233-5fcf-42fe-8bfd-e3efd8edee5f}">
+      <Declaration><![CDATA[METHOD ObservableAttachesAnObserver
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('ObservableAttachesAnObserver');
+
+// pass observee to subscriber
+eventSubscriber[1].ChangePublisher(eventPublisher);
+
+// First loop attaches the observer to the observee 
+eventSubscriber[1].CyclicCall();
+
+// One subscriber should be attached
+AssertEquals_INT(
+	Expected	:= 1, 
+	Actual		:= eventPublisher.NoOfAttachedObservers, 
+	Message 	:= 'Attaching a subscriber failed'
+	);
+	
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ObservableAttachesASecondObserver" Id="{8d52dfa4-1229-4dd8-8653-a17f65e3107f}">
+      <Declaration><![CDATA[METHOD ObservableAttachesASecondObserver
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('ObservableAttachesASecondObserver');
+
+// pass observee to subscriber
+eventSubscriber[2].ChangePublisher(eventPublisher);
+
+// First loop attaches another observer to the observee 
+eventSubscriber[2].CyclicCall();
+
+// One extra subscriber should be attached
+AssertEquals_INT(
+	Expected	:= 2, 
+	Actual		:= eventPublisher.NoOfAttachedObservers, 
+	Message 	:= 'Attaching a second subscriber failed'
+	);
+	
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ObservableAttachesTooMuchObservers" Id="{2deb7fb0-3789-400a-8b4d-8ae117c7787e}">
+      <Declaration><![CDATA[METHOD ObservableAttachesTooMuchObservers
+VAR
+	i						: INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('ObservableAttachesTooMuchObservers');
+
+// First loop attaches another observer to the observee 
+FOR i := 3 TO Param.MaxObservers + 1 DO
+	// pass observee to subscriber
+	eventSubscriber[i].ChangePublisher(eventPublisher);
+	eventSubscriber[i].CyclicCall();
+END_FOR
+	
+// Max no of subscribers should be attached
+AssertEquals_INT(
+	Expected	:= Param.MaxObservers, 
+	Actual		:= eventPublisher.NoOfAttachedObservers, 
+	Message 	:= 'Too many subscribers were registered'
+	);
+	
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ObserverFetchesCorrectData" Id="{8e829040-6c4f-4a7b-ac88-10a52fb66817}">
+      <Declaration><![CDATA[// Tests the complete observer pattern flow
+METHOD ObserverFetchesCorrectData
+VAR
+	message					: T_MaxString;
+	fbFormatString			: FB_FormatString;
+	i: INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('ObserverFetchesCorrectData');
+
+// Change the event in the publisher (in the example it is an INT) 
+eventPublisher.ChangeEvent := eventPublisher.Event + 1;
+eventPublisher.CyclicCall();
+
+FOR i := 1 TO Param.MaxObservers DO
+	fbFormatString(sFormat:= 'Observer %d did not receive the correct data', arg1:= F_INT(i), sOut=> message);
+	AssertEquals_INT(1 , eventSubscriber[i].event, message);
+END_FOR
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <Itf Name="I_Room" Id="{d418edf8-67f3-40f7-b4a7-abc90865897d}">
+    <Declaration><![CDATA[INTERFACE I_Room
+]]></Declaration>
+    <Method Name="M_SetTemperature" Id="{a76e8548-9872-43e7-8105-29f65ff90cd4}">
+      <Declaration><![CDATA[// sets the temperature, returns the actual status
+METHOD M_SetTemperature : BOOL
+VAR_INPUT
+	bOnOff					: BOOL;
+	nTemperature			: REAL;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="M_SwitchLight" Id="{f2944ea8-6079-47ea-8650-e69c176afb8e}">
+      <Declaration><![CDATA[// Switches the light on/off with certain illuminance
+METHOD M_SwitchLight : BOOL
+VAR_INPUT
+	bOnOff				: BOOL;
+	nIlluminance		: REAL;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

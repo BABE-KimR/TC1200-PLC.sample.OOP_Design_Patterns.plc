@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="SingletonPatternTest" Id="{2ad288e7-9790-41c7-865e-2cd23a384f19}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK SingletonPatternTest EXTENDS tcUnit.FB_TestSuite
+VAR
+	messageLogger1				: MessageLogger;
+	messageLogger2				: MessageLogger;
+	messageLogger3				: MessageLogger;
+	myMessage1					: STRING := 'Message 1';
+	myMessage2					: STRING := 'Message 2';
+	myMessage3					: STRING := 'Message 3';
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SendMessageToMessageLogger1();
+SendMessageToMessageLogger2();
+SendMessageToMessageLogger3();
+]]></ST>
+    </Implementation>
+    <Method Name="SendMessageToMessageLogger1" Id="{096a3e22-61bd-45a7-90a1-c31ef1d818ea}">
+      <Declaration><![CDATA[METHOD SendMessageToMessageLogger1
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('SendMessageToMessageLogger1');
+
+// Log 'message 1' to the first messagelogger instance
+messageLogger1.LogMessage(myMessage1);
+
+// The message should be available in the first messagelogger
+AssertEquals_STRING(
+	Expected	:= myMessage1, 
+	Actual		:= messageLogger1.message, 
+	Message 	:= 'Message1 was not received by message logger 1'
+	);
+	
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SendMessageToMessageLogger2" Id="{65dc4ef0-d6a7-445a-bda4-91eb7a3f6acf}">
+      <Declaration><![CDATA[METHOD SendMessageToMessageLogger2
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('SendMessageToMessageLogger2');
+
+// Log 'message 2' to a second messagelogger instance
+messageLogger2.LogMessage(myMessage2);
+
+// The message should be available in the second messagelogger
+AssertEquals_STRING(
+	Expected	:= myMessage2, 
+	Actual		:= messageLogger2.message, 
+	Message 	:= 'Message2 was not received by message logger 2'
+	);
+	
+// Since there is already an instance of the singleton, also message logger 1 should have received message 2
+AssertEquals_STRING(
+	Expected	:= 'Message 2', 
+	Actual		:= messageLogger1.message, 
+	Message 	:= 'Message2 was not received by message logger 1'
+	);
+		
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SendMessageToMessageLogger3" Id="{158f6898-c96f-4e7e-b8a0-0cbe92266aad}">
+      <Declaration><![CDATA[METHOD SendMessageToMessageLogger3
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('SendMessageToMessageLogger3');
+
+// Log 'message 2' to a second messagelogger instance
+messageLogger3.LogMessage(myMessage3);
+
+// The message should be available in the second messagelogger
+AssertEquals_STRING(
+	Expected	:= myMessage3, 
+	Actual		:= messageLogger3.message, 
+	Message 	:= 'Message3 was not received by message logger 3'
+	);
+	
+// Since there is already an instance of the singleton, also message logger 1 should have received message 2
+AssertEquals_STRING(
+	Expected	:= myMessage3, 
+	Actual		:= messageLogger1.message, 
+	Message 	:= 'Message3 was not received by message logger 1'
+	);
+		
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_EmptyObject" Id="{233ae353-b7fc-445b-a060-dcc1d48d8608}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK FB_EmptyObject IMPLEMENTS I_Object
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	sObjectID			: STRING;
+	eObjectType			: E_OBJECTS;
+	// pointers for destructor
+	_pInstance			: POINTER TO FB_EmptyObject;
+	_pTemp				: POINTER TO FB_EmptyObject;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Destruct" Id="{7662dfd7-e692-4980-be03-99e8c1af1a34}">
+      <Declaration><![CDATA[METHOD Destruct : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// destroy the instance 
+IF _pInstance	<> 0 THEN
+	// store in temp value otherwise the FB_exit called at __DELETE will create a stack overflow
+	// when not set to 0 before __DELETE  
+	_pTemp := _pInstance;
+	_pInstance := 16#0; 
+	__DELETE(_pTemp);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_exit" Id="{46859754-a44e-4350-9673-1b2d304496b1}">
+      <Declaration><![CDATA[METHOD FB_exit : BOOL
+VAR_INPUT
+	bInCopyCode : BOOL; // if TRUE, the exit method is called for exiting an instance that is copied afterwards (online change).
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Destruct();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{e9b051ea-6749-4848-88bc-65a2f326a012}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains       : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode        : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	// Object identifier name
+	sObjectID			: STRING;	
+	// Object type as a string
+	eObjectType			: E_OBJECTS;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^.sObjectID		:= sObjectID;
+THIS^.eObjectType	:= eObjectType;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_GetObjectDescription" Id="{9871546f-35e4-411d-9e77-65dd83e9ab96}">
+      <Declaration><![CDATA[METHOD M_GetObjectDescription : string
+VAR_INPUT
+END_VAR
+VAR
+	sDescription			: STRING;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[sDescription := concat(THIS^.sObjectID, ' Type: '); 
+sDescription := concat(sDescription, TO_STRING(THIS^.eObjectType)); 
+M_GetObjectDescription := sDescription;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Reset" Id="{d0885b86-cac9-4d0a-98fe-ab2a0651959d}">
+      <Declaration><![CDATA[{warning 'add method implementation'}
+METHOD M_Reset : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Start" Id="{b40f8e59-0dae-42a4-918d-591c8f514f45}">
+      <Declaration><![CDATA[{warning 'add method implementation'}
+METHOD M_Start : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="P_Status" Id="{53684b99-8d1a-4b90-a247-c6e1693ac22f}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY P_Status : DWORD
+]]></Declaration>
+      <Get Name="Get" Id="{d649fac2-415c-4875-a6da-507dff501e01}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="pInstance" Id="{2f246fbe-2a73-4b22-bd6c-89ca2a9bc498}">
+      <Declaration><![CDATA[PROPERTY pInstance : POINTER TO FB_EmptyObject]]></Declaration>
+      <Set Name="Set" Id="{66b5e17f-da4c-470a-8eaa-c2460b2edcec}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[// Store pointer for destructor
+_pInstance := pInstance;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <LineIds Name="FB_EmptyObject">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_EmptyObject.Destruct">
+      <LineId Id="10" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_EmptyObject.FB_exit">
+      <LineId Id="6" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_EmptyObject.FB_init">
+      <LineId Id="2" Count="0" />
+      <LineId Id="20" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_EmptyObject.M_GetObjectDescription">
+      <LineId Id="5" Count="0" />
+      <LineId Id="8" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_EmptyObject.M_Reset">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_EmptyObject.M_Start">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_EmptyObject.P_Status.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_EmptyObject.pInstance.Set">
+      <LineId Id="5" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

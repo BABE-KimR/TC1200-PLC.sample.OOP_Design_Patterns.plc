@@ -2,6 +2,9 @@
 <TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.35">
 	<Project ProjectGUID="{D3172DAF-5E52-4D6E-84D5-2068CEDAE8F0}" Target64Bit="true" ShowHideConfigurations="#x106">
 		<System>
+			<Settings MaxCpus="6" NonWinCpus="2" Packages="2">
+				<Cpu CpuId="4"/>
+			</Settings>
 			<Tasks>
 				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
 					<Name>PlcTask</Name>
@@ -10,15 +13,41 @@
 		</System>
 		<Plc>
 			<Project GUID="{34B874B2-528C-4DE5-B664-8458F8BBF8C9}" Name="00_Strategy" PrjFilePath="00_Strategy\00_Strategy.plcproj" TmcFilePath="00_Strategy\00_Strategy.tmc" ReloadTmc="true" AmsPort="851" TargetArchiveSettings="#x0003" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{E9670ABF-B6D2-5A22-FD26-E0D7FF07063C}">
 					<Name>00_Strategy Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+					<Vars VarGrpType="1">
+						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>P_Strategy.sensor1_1.rawValue</Name>
+							<Comment><![CDATA[ measurement value of sensor]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>P_Strategy.sensor1_2.rawValue</Name>
+							<Comment><![CDATA[ measurement value of sensor]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>P_Strategy.sensor2.rawValue</Name>
+							<Comment><![CDATA[ measurement value of sensor]]></Comment>
+							<Type>INT</Type>
+						</Var>
+					</Vars>
 					<Contexts>
 						<Context>
-							<Id>1</Id>
-							<Name>Default</Name>
+							<Id NeedCalleeCall="true">0</Id>
+							<Name>PlcTask</Name>
+							<ManualConfig>
+								<OTCID>#x02010030</OTCID>
+							</ManualConfig>
+							<Priority>20</Priority>
+							<CycleTime>10000000</CycleTime>
 						</Context>
 					</Contexts>
+					<TaskPouOids>
+						<TaskPouOid Prio="20" OTCID="#x08502001"/>
+					</TaskPouOids>
 				</Instance>
 			</Project>
 		</Plc>

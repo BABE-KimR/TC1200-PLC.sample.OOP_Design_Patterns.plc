@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <Itf Name="I_MessageLogger" Id="{ec655abd-4dec-479e-9b35-4f62bb6f0459}">
+    <Declaration><![CDATA[INTERFACE I_MessageLogger
+]]></Declaration>
+    <Method Name="LogMessage" Id="{b07d4e27-c2ca-4837-babc-69109c0637cb}">
+      <Declaration><![CDATA[METHOD LogMessage : String
+VAR_INPUT
+	Message			: STRING;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Property Name="message" Id="{62ddc68c-11f8-4fec-ac9c-2f79cddc580d}">
+      <Declaration><![CDATA[PROPERTY message : string]]></Declaration>
+      <Get Name="Get" Id="{e1ead310-d158-43e2-8941-2df41c16e013}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+  </Itf>
+</TcPlcObject>

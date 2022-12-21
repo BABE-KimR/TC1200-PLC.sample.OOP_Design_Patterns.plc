@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="P_TEST" Id="{0e642115-0087-4ab8-884c-2001d8a42063}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_TEST
+VAR
+	fbObserver_Pattern_Test					: ObserverPatternTest;
+	fbSingleton_Pattern_Test				: SingletonPatternTest;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[tcUnit.RUN();
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

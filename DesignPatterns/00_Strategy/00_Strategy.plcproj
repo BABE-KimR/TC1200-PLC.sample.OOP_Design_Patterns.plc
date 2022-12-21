@@ -17,25 +17,34 @@
     <LibraryReferences>{f2beecfd-1f15-4753-8d02-16e32e5aab42}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Helpers\C_TO_F.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helpers\RES_PT.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helpers\TEMP_PT.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Strategy Pattern\General\Temperature sensor\FB_PT100.TcPOU">
+    <Compile Include="Strategy Pattern\General\Temperature sensor\tempSensor_PT100.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Strategy Pattern\General\Temperature sensor\FB_PT1000.TcPOU">
+    <Compile Include="Strategy Pattern\General\Temperature sensor\tempSensor_PT1000.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Strategy Pattern\General\Temperature sensor\FB_TempSensor.TcPOU">
+    <Compile Include="Strategy Pattern\General\Temperature sensor\tempSensor.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Strategy Pattern\Interfaces\I_TempSensor.TcIO">
+    <Compile Include="Strategy Pattern\Interfaces\ITempSensor.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Strategy Pattern\Motors\FB_Motor_PT.TcPOU">
+    <Compile Include="Strategy Pattern\Motors\motor.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Strategy Pattern\P_Strategy.TcPOU">
@@ -43,6 +52,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Helpers" />
     <Folder Include="Strategy Pattern" />
     <Folder Include="Strategy Pattern\General" />
     <Folder Include="Strategy Pattern\General\Temperature sensor" />
@@ -63,22 +73,27 @@
       <Namespace>Tc3_Module</Namespace>
     </PlaceholderReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="00_Strategy.tmc">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>
       <XmlArchive>
-  <Data>
-    <o xml:space="preserve" t="OptionKey">
+        <Data>
+          <o xml:space="preserve" t="OptionKey">
       <v n="Name">"&lt;ProjectRoot&gt;"</v>
       <d n="SubKeys" t="Hashtable" />
       <d n="Values" t="Hashtable" />
     </o>
-  </Data>
-  <TypeList>
-    <Type n="Hashtable">System.Collections.Hashtable</Type>
-    <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
-    <Type n="String">System.String</Type>
-  </TypeList>
-</XmlArchive>
+        </Data>
+        <TypeList>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+          <Type n="String">System.String</Type>
+        </TypeList>
+      </XmlArchive>
     </PlcProjectOptions>
   </ProjectExtensions>
 </Project>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <Itf Name="I_EventPublisher" Id="{1f5de49e-15f1-4016-8ec5-881bbd6dbdff}">
+    <Declaration><![CDATA[INTERFACE I_EventPublisher EXTENDS I_Observable
+]]></Declaration>
+    <Property Name="Event" Id="{b96138b9-a9e5-4d6c-a65d-f57b15e0a398}">
+      <Declaration><![CDATA[PROPERTY Event : int]]></Declaration>
+      <Get Name="Get" Id="{f8cdae7e-232d-4e5e-a739-7f4256dc9b12}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+  </Itf>
+</TcPlcObject>

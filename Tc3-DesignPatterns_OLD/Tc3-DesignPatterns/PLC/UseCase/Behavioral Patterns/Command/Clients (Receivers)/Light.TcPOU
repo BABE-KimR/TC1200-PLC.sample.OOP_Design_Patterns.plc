@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Light" Id="{2bb45fa0-3732-4d74-a4f9-b70107719025}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'Light is a CLASS and must be accessed using methods or properties'}
+FUNCTION_BLOCK Light implements I_OnCommand, I_OffCommand
+VAR
+	light					AT %Q*: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+// The body of a class must not be used for code.  
+// Cyclic code should be called from a method if needed. 
+]]></ST>
+    </Implementation>
+    <Property Name="IsOff" Id="{78e54d08-811e-4945-b835-8691977f6494}">
+      <Declaration><![CDATA[PROPERTY IsOff : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{5da50030-e89d-4dbd-9bf3-7cfbf314ece6}">
+        <Declaration><![CDATA[]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IsOff := not light;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="IsOn" Id="{0b89753b-236a-4402-b59b-016dd3f00d33}">
+      <Declaration><![CDATA[PROPERTY IsOn : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{a580becd-aae1-45d3-92bd-358e35cdb7c3}">
+        <Declaration><![CDATA[]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Off" Id="{caa3962d-eaab-459a-b06e-1011f201ab27}">
+      <Declaration><![CDATA[METHOD Off
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[light := false;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="On" Id="{afa2321b-0383-4b58-9354-3518975e1088}">
+      <Declaration><![CDATA[METHOD On
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[light := true;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

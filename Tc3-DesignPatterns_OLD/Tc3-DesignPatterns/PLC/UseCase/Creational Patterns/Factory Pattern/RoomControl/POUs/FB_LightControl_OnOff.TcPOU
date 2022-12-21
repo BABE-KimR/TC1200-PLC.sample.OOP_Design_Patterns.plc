@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_LightControl_OnOff" Id="{f51cf791-f61e-4838-a54c-1845cb90087a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_LightControl_OnOff implements I_LightControl
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="M_Reset" Id="{85ed67b8-9563-491f-90fe-00d72be67a2e}">
+      <Declaration><![CDATA[{warning 'add method implementation'}
+METHOD M_Reset : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Set" Id="{f42b4bf1-c525-44ed-8944-31a3b34c3d3d}">
+      <Declaration><![CDATA[{warning 'add method implementation'}
+METHOD M_Set : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="nAddress" Id="{d9ff440f-ac1e-4bf0-a984-91af453e2734}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY nAddress : DINT
+]]></Declaration>
+      <Get Name="Get" Id="{76706d52-e499-4a47-86d5-6bd5a7d4412b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{98a3f403-31d3-49eb-b917-1c7eeebf72ba}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="nIlluminance" Id="{8b1d9e45-1273-435f-a58a-88a965e23b67}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY nIlluminance : REAL
+]]></Declaration>
+      <Get Name="Get" Id="{67c9a7fa-2c37-433d-8ec7-7a51190057e6}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{2fae2e5e-8dae-445e-9603-b8edb0740b6a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <LineIds Name="FB_LightControl_OnOff">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_LightControl_OnOff.M_Reset">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_LightControl_OnOff.M_Set">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_LightControl_OnOff.nAddress.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_LightControl_OnOff.nAddress.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_LightControl_OnOff.nIlluminance.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_LightControl_OnOff.nIlluminance.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

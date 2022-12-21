@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_Room" Id="{eb5ffc53-f4dc-4c58-ac7d-796ce77112a6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Room IMPLEMENTS  I_Room
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="M_SetTemperature" Id="{4a8201b3-3769-45e8-a8d3-3fd5d308d43d}">
+      <Declaration><![CDATA[{warning 'add method implementation'}
+(* sets the temperature, returns the actual status*)
+METHOD M_SetTemperature : BOOL
+VAR_INPUT
+	bOnOff	: BOOL;
+	nTemperature	: REAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_SwitchLight" Id="{6d5fde6e-9d37-4a59-9f5b-20302e203c89}">
+      <Declaration><![CDATA[{warning 'add method implementation'}
+(* Switches the light on/off with certain illuminance*)
+METHOD M_SwitchLight : BOOL
+VAR_INPUT
+	bOnOff	: BOOL;
+	nIlluminance	: REAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_Room">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Room.M_SetTemperature">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Room.M_SwitchLight">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

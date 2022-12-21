@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="NoCommand" Id="{a401e31b-9139-4a9e-b5cd-f1c627427aee}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'NoCommand is a CLASS and must be accessed using methods or properties'}
+FUNCTION_BLOCK NoCommand IMPLEMENTS I_Command
+VAR
+END_VAR
+/// Command that does nothing for base initialization
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Execute" Id="{6d87fd1e-6241-474b-a0ec-b5689361a963}">
+      <Declaration><![CDATA[METHOD Execute
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

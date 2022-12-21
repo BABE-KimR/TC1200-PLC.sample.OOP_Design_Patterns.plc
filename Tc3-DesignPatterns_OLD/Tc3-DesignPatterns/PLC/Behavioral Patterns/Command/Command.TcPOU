@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Command" Id="{d3025f81-c570-43b9-b116-569091ae8ebc}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'Command is a CLASS and must be accessed using methods or properties'}
+FUNCTION_BLOCK Command
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Execute" Id="{eadad844-3ff8-46f8-bc73-6d98606cec1e}">
+      <Declaration><![CDATA[METHOD Execute
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

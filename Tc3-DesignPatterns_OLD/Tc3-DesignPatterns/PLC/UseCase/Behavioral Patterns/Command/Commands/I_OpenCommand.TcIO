@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <Itf Name="I_OpenCommand" Id="{cae4df8e-f3dc-4178-af73-0811040cc013}">
+    <Declaration><![CDATA[INTERFACE I_OpenCommand
+]]></Declaration>
+    <Property Name="IsOpen" Id="{265295e2-ebd9-4fd3-a322-57b798161a3a}">
+      <Declaration><![CDATA[PROPERTY IsOpen : Bool]]></Declaration>
+      <Get Name="Get" Id="{b8a8c704-035e-496b-9550-bc6b814f44b1}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Method Name="Open" Id="{b3a70e25-45f2-42b7-bb12-8db8e9555543}">
+      <Declaration><![CDATA[METHOD Open
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

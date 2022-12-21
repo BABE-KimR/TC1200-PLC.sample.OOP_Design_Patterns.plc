@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_LightControl_Dali" Id="{0e241490-0d03-4d44-820c-6de711c3af98}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_LightControl_Dali implements I_LightControl
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="M_Reset" Id="{57d9b78d-f339-423f-804f-b3c5f5194cf9}">
+      <Declaration><![CDATA[{warning 'add method implementation'}
+METHOD M_Reset : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Set" Id="{a012e4cd-c6ff-416a-9f38-c0933b0a66ea}">
+      <Declaration><![CDATA[{warning 'add method implementation'}
+METHOD M_Set : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="nAddress" Id="{138c7b6f-ab66-4248-a0b5-771c08220421}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY nAddress : DINT
+]]></Declaration>
+      <Get Name="Get" Id="{dc42b859-0099-492a-9c10-cc25905fe907}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{7e4f999b-1b25-4ec3-8168-53ee78b8af33}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="nIlluminance" Id="{93fa0e0f-14a1-41a5-8f5c-2cc45cd55bc7}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY nIlluminance : REAL
+]]></Declaration>
+      <Get Name="Get" Id="{fd4352fd-d141-4652-b6cf-2dd9341273ca}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{68c68892-dfd1-461a-99f3-41e1fa21c007}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <LineIds Name="FB_LightControl_Dali">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_LightControl_Dali.M_Reset">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_LightControl_Dali.M_Set">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_LightControl_Dali.nAddress.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_LightControl_Dali.nAddress.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_LightControl_Dali.nIlluminance.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_LightControl_Dali.nIlluminance.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

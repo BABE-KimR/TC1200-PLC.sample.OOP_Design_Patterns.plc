@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="motor" Id="{6caff27d-6c1b-44a6-a830-e43bb9eb0ae4}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'This is a CLASS and should be accessed using methods or properties'}
+FUNCTION_BLOCK motor
+VAR
+	// The concrete temperature sensor interface pointer is set
+	// 	* during FB_Init
+	//  * during runtime via property changeTempSensor  
+	_tempSensor					: ITempSensor;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*  
+	Principally a CLASS should be accessed using methods or properties
+	Good practice is not put code here, or call the class directly 
+	Or maybe just a call to a method calling the cyclic code 
+*)
+cyclicCall();]]></ST>
+    </Implementation>
+    <Property Name="changeTempSensor" Id="{12c3b750-2c1a-45d0-8a59-fc5cfdd1f31d}">
+      <Declaration><![CDATA[// Change the concrete temperature sensor interface pointer during runtime  
+PROPERTY changeTempSensor : ITempSensor]]></Declaration>
+      <Set Name="Set" Id="{dd43170b-fc2b-4898-9032-6e6fb46fedc1}">
+        <Declaration><![CDATA[]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[// Change the concrete temperature sensor interface pointer during runtime  
+_tempSensor := changeTempSensor;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="cyclicCall" Id="{4514642f-eb19-4c5e-a18b-92d458d43c21}">
+      <Declaration><![CDATA[METHOD cyclicCall
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_Init" Id="{2aa0dc3d-6dbf-49a8-be50-28e892b9218f}">
+      <Declaration><![CDATA[METHOD FB_Init : BOOL
+VAR_INPUT
+    bInitRetains 			: BOOL ; // if TRUE, the retain variables are initialized (reset warm / reset cold)
+    bInCopyCode  			: BOOL ; // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	tempSensor				: ITempSensor;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Set the concrete temperature sensor interface pointer during instantiation of the class  
+this^._tempSensor := tempSensor;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="motorTemperature" Id="{654d5e59-e99f-493f-a266-a4a083f4b46f}">
+      <Declaration><![CDATA[PROPERTY motorTemperature : real]]></Declaration>
+      <Get Name="Get" Id="{040738f7-52ce-4727-acfe-4470511b935e}">
+        <Declaration><![CDATA[]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[// Our implementation requires temperature feedback in degrees Celcius
+motorTemperature := _tempSensor.tempDegreesC;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

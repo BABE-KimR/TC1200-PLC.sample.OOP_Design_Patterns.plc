@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="MAIN" Id="{1f49e690-c5d9-46c6-b5ff-b3a4259d6f70}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+// *************** ROUTER
+	// router info (memory consumption)
+	fbGetRouterStatusInfo 	: FB_GetRouterStatusInfo;
+	stTCRouterStatusInfo	: ST_TCRouterStatusInfo;
+	memAvailable			: DWORD;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// TcUnit tests
+P_TEST();
+
+// Use cases implementations
+P_USE_CASES();
+
+// *************** ROUTER INFO
+// router status
+fbGetRouterStatusInfo(
+	sNetId:= , 
+	bExecute:= NOT fbGetRouterStatusInfo.bBusy, 
+	tTimeout:= , 
+	bBusy=> , 
+	bError=> , 
+	nErrID=> , 
+	info=> stTCRouterStatusInfo
+	);
+IF stTCRouterStatusInfo.maxMemAvail	> 0 THEN
+	memAvailable := stTCRouterStatusInfo.maxMemAvail;
+END_IF
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

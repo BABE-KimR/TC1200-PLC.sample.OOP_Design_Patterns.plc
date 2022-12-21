@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <Itf Name="I_OffCommand" Id="{9598dbd2-5ce8-4ed8-a51c-94df587af3e7}">
+    <Declaration><![CDATA[INTERFACE I_OffCommand
+]]></Declaration>
+    <Property Name="IsOff" Id="{c8a07c24-29f7-45d3-bb08-f511d7e9341c}">
+      <Declaration><![CDATA[PROPERTY IsOff : Bool]]></Declaration>
+      <Get Name="Get" Id="{0bab355d-90ae-4fc9-b2f2-3c26eaf1f0e1}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Method Name="Off" Id="{264ef751-5b49-4856-b742-1f4bafaea6d7}">
+      <Declaration><![CDATA[METHOD Off
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

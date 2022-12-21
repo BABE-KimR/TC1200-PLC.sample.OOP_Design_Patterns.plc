@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="FB_EventSubscriber" Id="{d4dce0f2-3ded-43b2-8491-9014ab19c774}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'FB_EventSubscriber is a CLASS and must be accessed using methods or properties'}
+FUNCTION_BLOCK FB_EventSubscriber IMPLEMENTS I_CyclicCall, I_Observer
+VAR	
+	_eventPublisher					: I_EventPublisher;
+	_event							: INT;
+	
+	verbose							: BOOL := TRUE;
+
+	// Register after online change 
+	registeredAtPublisher			: BOOL;	
+	
+	
+	arr				: ARRAY[0..100] OF BOOL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+// The body of a class must not be used for code.  
+// Cyclic code should be called from a method if needed. 
+]]></ST>
+    </Implementation>
+    <Method Name="ChangePublisher" Id="{5d3a73b4-e70f-47cf-85f0-6c2314916a13}">
+      <Declaration><![CDATA[METHOD ChangePublisher
+VAR_INPUT
+	eventPublisher					: I_EventPublisher;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_eventPublisher := eventPublisher;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CyclicCall" Id="{5c9ecd9a-07d4-463a-ade9-6bde0f93e10b}">
+      <Declaration><![CDATA[METHOD CyclicCall
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Did we already register in the publisher?
+IF NOT registeredAtPublisher	THEN
+	registeredAtPublisher := _eventPublisher.attach(THIS^);
+END_IF 
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Event" Id="{aa9553a2-33bf-40d8-a234-28f7162b10c5}">
+      <Declaration><![CDATA[// IMPLEMENTED ONLY FOR TESTING PURPOSES
+PROPERTY Event : int]]></Declaration>
+      <Get Name="Get" Id="{231fdd1c-03f2-4591-b73d-451501ccc307}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[event := _event;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="FB_init" Id="{3bae645b-cda2-435b-a713-7a36da169a78}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains	 				: BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode 					: BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	EventPublisher					: I_EventPublisher;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_eventPublisher := eventPublisher;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="fbreinit" Id="{981288f7-d0dd-4f4e-9719-c7816223b9f0}">
+      <Declaration><![CDATA[{attribute 'call_after_online_change_slot' := '0'}
+METHOD PRIVATE fbreinit
+
+(*	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+   	THIS METHOD is force called after every online change 
+   	!= the fb_reinit system call that will be called after the instance of the concerned function block has been copied 
+ 	(during an online change after modifications in the function block declaration)
+
+	This is necessary since both observer en observee have references to one other
+	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	*) 
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[registeredAtPublisher := FALSE;
+breinit:=not breinit; // flip the test marker]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Message" Id="{e4f26ffc-57fb-4c96-b5ee-4b9c9356b25c}">
+      <Declaration><![CDATA[METHOD PRIVATE Message : BOOL
+VAR_INPUT
+	dintArg						: DINT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Log message
+IF verbose  THEN
+	ADSLOGDINT(
+		msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG, // ADSLOG_MSGTYPE_ERROR OR ADSLOG_MSGTYPE_LOG, 
+		msgFmtStr 	:= 'Subscriber 1 knows the value changed to %d',
+		dintArg 	:= dintArg
+		);
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Update" Id="{26657e55-00fd-4c13-80e1-21813364b2ff}">
+      <Declaration><![CDATA[METHOD Update : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// the publisher mentions an update, fetch the data
+_event := _eventPublisher.event;
+message(TO_DINT(_event));
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

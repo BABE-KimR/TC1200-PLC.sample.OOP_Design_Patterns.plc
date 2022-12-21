@@ -3,26 +3,45 @@
   <POU Name="P_Strategy" Id="{71eab6f8-9f1c-4cb6-8e46-fa257ca9189d}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM P_Strategy
 VAR
-	fbSensor1		: FB_PT100;
-	fbMotor1		: FB_Motor_PT(TempSensor := fbSensor1);
-	fbSensor2		: FB_PT1000;
-	fbMotor2		: FB_Motor_PT(fbSensor2);
+	// instantiations of concrete classes 
+	sensor1_1		: tempSensor_PT100;
+	sensor1_2		: tempSensor_PT1000;
+	motor1			: motor(tempSensor := sensor1_1);
+	sensor2			: tempSensor_PT1000;
+	motor2			: motor(sensor2);
+	
+	// Change the sensor during runtime
+	useSensor2		: BOOL;
+	
+	// Debug
+	motor1_Temp		: REAL;
+	motor2_Temp		: REAL;	
 END_VAR
-]]></Declaration>
+(*
+Strategy allows one of a family of algorithms to be selected on-the-fly at runtime.
+https://en.wikipedia.org/wiki/Strategy_pattern
+*)]]></Declaration>
     <Implementation>
       <ST><![CDATA[// Motors
-fbSensor1();
-fbMotor1();	
-fbSensor2();
-fbMotor2();	
+motor1.cyclicCall();	
+motor2.cyclicCall();	
+
+// Change the temperature sensor of motor 1 during runtime
+IF useSensor2		THEN
+	motor1.changeTempSensor := sensor1_2;
+ELSE
+	motor1.changeTempSensor := sensor1_1;	
+END_IF
+
+sensor1_1.DEBUG_setRawValue := 110;
+sensor1_2.DEBUG_setRawValue := 1010;
+sensor2.DEBUG_setRawValue := 1010;
+
+// Motor temperature feedback
+motor1_Temp := motor1.motorTemperature;
+motor2_Temp := motor2.motorTemperature;
 
 ]]></ST>
     </Implementation>
-    <LineIds Name="P_Strategy">
-      <LineId Id="107" Count="0" />
-      <LineId Id="155" Count="3" />
-      <LineId Id="140" Count="0" />
-      <LineId Id="86" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

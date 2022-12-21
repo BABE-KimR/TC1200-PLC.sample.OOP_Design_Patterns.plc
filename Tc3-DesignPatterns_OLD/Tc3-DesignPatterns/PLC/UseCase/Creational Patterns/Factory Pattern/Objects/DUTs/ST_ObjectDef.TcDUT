@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <DUT Name="ST_ObjectDef" Id="{5cc13e4b-0a84-4acb-a99e-77662859fbe8}">
+    <Declaration><![CDATA[TYPE ST_ObjectDef :
+STRUCT
+	sObjectID			: STRING := 'Error';
+	eObjectType			: E_Objects := E_Objects.UNDEFINED;
+	bReleaseIfExists	: BOOL := FALSE; // release the pointer if the pointer is already set
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

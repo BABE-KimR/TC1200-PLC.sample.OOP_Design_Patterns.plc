@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <Itf Name="I_LightControl" Id="{a69c5011-7319-4bf8-a869-2c7adb65cb07}">
+    <Declaration><![CDATA[INTERFACE I_LightControl
+]]></Declaration>
+    <Method Name="M_Reset" Id="{b47b4758-e09c-48dd-9b75-d61a69cc8597}">
+      <Declaration><![CDATA[METHOD M_Reset : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="M_Set" Id="{71c054e3-b394-4398-8263-4ad96451bf8a}">
+      <Declaration><![CDATA[METHOD M_Set : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Property Name="nAddress" Id="{27008ca9-1135-4ca4-8b67-90dc83916b6e}">
+      <Declaration><![CDATA[PROPERTY nAddress : dint]]></Declaration>
+      <Get Name="Get" Id="{9bbbc337-3207-46af-bf8d-e5ba54c0ffbf}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{c8ecdddf-f965-4041-a142-1e8bbb24851a}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
+    <Property Name="nIlluminance" Id="{43322e26-a80a-4655-9558-c79d31ec8fe3}">
+      <Declaration><![CDATA[PROPERTY nIlluminance : real]]></Declaration>
+      <Get Name="Get" Id="{a97ce1bc-6f29-4456-bde2-11640ccee9bf}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+      <Set Name="Set" Id="{8959a0fc-3933-4f9d-9755-4bf43517701b}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Set>
+    </Property>
+  </Itf>
+</TcPlcObject>

@@ -17,9 +17,9 @@ END_VAR
     <Method Name="FB_Init" Id="{2aa0dc3d-6dbf-49a8-be50-28e892b9218f}">
       <Declaration><![CDATA[METHOD FB_Init : BOOL
 VAR_INPUT
-    bInitRetains 			: BOOL ; // if TRUE, the retain variables are initialized (reset warm / reset cold)
-    bInCopyCode  			: BOOL ; // if TRUE, the instance afterwards gets moved into the copy code (online change)
-	TempSensor				: I_TempSensor;
+    bInitRetains 		: BOOL ; // if TRUE, the retain variables are initialized (reset warm / reset cold)
+    bInCopyCode  		: BOOL ; // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	TempSensor			: I_TempSensor;
 END_VAR
 ]]></Declaration>
       <Implementation>

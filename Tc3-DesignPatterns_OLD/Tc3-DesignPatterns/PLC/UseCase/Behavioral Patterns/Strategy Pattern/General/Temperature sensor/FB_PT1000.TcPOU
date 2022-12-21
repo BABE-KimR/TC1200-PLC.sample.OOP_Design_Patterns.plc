@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_PT1000" Id="{c0c66743-b10d-45bf-ad67-6e8c1b0f5e19}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_PT1000 EXTENDS FB_TempSensor IMPLEMENTS I_TempSensor
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'This is considered a CLASS and must be accessed using methods or properties'}
+FUNCTION_BLOCK FB_PT1000 EXTENDS FB_TempSensor
 VAR
 	A							: REAL;
 	B							: REAL;

@@ -1,0 +1,416 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FileVersion>1.0.0.0</FileVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{361daf55-9dd1-4ae6-97d3-b3a604540465}</ProjectGuid>
+    <SubObjectsSortedByName>True</SubObjectsSortedByName>
+    <Name>PLC</Name>
+    <ProgramVersion>3.1.4022.7</ProgramVersion>
+    <Application>{3daab093-eb9d-487a-ae1d-ae74eda2f658}</Application>
+    <TypeSystem>{7e2913bf-b93f-4526-b5cc-09854c5433ab}</TypeSystem>
+    <Implicit_Task_Info>{edc089e1-d175-47d5-912e-ace10b08065c}</Implicit_Task_Info>
+    <Implicit_KindOfTask>{12ced7d1-f869-49c5-a036-d5b516c7c148}</Implicit_KindOfTask>
+    <Implicit_Jitter_Distribution>{931c9cb9-acd2-46db-b3f3-c38eeb988148}</Implicit_Jitter_Distribution>
+    <LibraryReferences>{cd979659-8e4f-4d14-85b3-f1927cbaf2f6}</LibraryReferences>
+    <CompilerDefines>
+    </CompilerDefines>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Behavioral Patterns\Command\I_Command.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Behavioral Patterns\Command\NoCommand.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Behavioral Patterns\Observer\Class Diagram Observer.TcCD">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Behavioral Patterns\Observer\Observable.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Behavioral Patterns\Observer\I_Observable.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Behavioral Patterns\Observer\I_Observer.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Behavioral Patterns\Singleton\I_Singleton.TcIO">
+      <SubType>Code</SubType>
+      <ExcludeFromBuild>false</ExcludeFromBuild>
+    </Compile>
+    <Compile Include="Behavioral Patterns\Singleton\Singleton.TcPOU">
+      <SubType>Code</SubType>
+      <ExcludeFromBuild>false</ExcludeFromBuild>
+      <External>false</External>
+    </Compile>
+    <Compile Include="Behavioral Patterns\Singleton\MySingleton.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Test\Behavioral Patterns\Singleton\SingletonPatternTest.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Command\Clients %28Receivers%29\Gate.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Command\Clients %28Receivers%29\Light.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Command\Commands\I_OffCommand.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Command\Commands\I_CloseCommand.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Command\Commands\I_OnCommand.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Command\Commands\I_OpenCommand.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Command\Commands\OffCommand.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Command\Commands\CloseCommand.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Command\Commands\OnCommand.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Command\Commands\OpenCommand.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Command\Invokers\Tp10.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Command\P_CommandPattern.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Decorator\P_Decorator.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Decorator\StringBuilder\StringBuilder.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Singleton\P_Singleton.TcPOU">
+      <SubType>Code</SubType>
+      <ExcludeFromBuild>false</ExcludeFromBuild>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Singleton\SingletonByProxy1\P_SingletonByProxy.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Singleton\SingletonByProxy1\ProxyToSingleton.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Singleton\SingletonByProxy1\Proxy_Interface.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Singleton\SingletonByProxy1\RealSingleton.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Singleton\SingletonByProxy\I_MessageLogger.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Singleton\SingletonByProxy\MessageLogger.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Singleton\SingletonByProxy\MessageLoggerSingleton.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Strategy Pattern\General\Temperature sensor\FB_PT100.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Strategy Pattern\General\Temperature sensor\FB_PT1000.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Strategy Pattern\General\Temperature sensor\FB_TempSensor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Strategy Pattern\Interfaces\I_TempSensor.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Strategy Pattern\P_Strategy.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Strategy Pattern\Motors\FB_Motor_PT.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\Loggers\DUTs\ILogger.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\Loggers\FB_AbstractLoggerFactory.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\Loggers\FB_FileLoggerFactory.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\Loggers\POUs\FB_CsvLogger.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\Loggers\POUs\FB_Logger.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\Loggers\POUs\FB_TxtLogger.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\Loggers\POUs\FB_XmlLogger.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\P_FactoryPattern.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\Objects\DUTs\E_OBJECTS.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\Objects\DUTs\I_Object.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\Objects\DUTs\ST_ObjectDef.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\Objects\FB_ObjectFactory.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\Objects\POUs\FB_Cylinder.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\Objects\POUs\FB_Door.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\Objects\POUs\FB_EmptyObject.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\Objects\POUs\FB_Motor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\Objects\POUs\FB_Object.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\RoomControl\ClassDiagram_RoomControl.TcCD">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\RoomControl\DUTs\I_LightControl.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\RoomControl\DUTs\I_Room.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\RoomControl\FB_Room.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\RoomControl\POUs\FB_LightControl.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\RoomControl\POUs\FB_LightControl_Dali.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\RoomControl\POUs\FB_LightControl_KNX.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Creational Patterns\Factory Pattern\RoomControl\POUs\FB_LightControl_OnOff.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_Interfaces\I_CyclicCall.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Param.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="PlcTask.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Test\Behavioral Patterns\Observer\ObserverPatternTest.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Test\P_TEST.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Observer\EventPublisherWithInheritance.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Observer\EventPublisherWithoutInheritance.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Observer\FB_EventSubscriber.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Observer\FB_EventSubscriber2.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Observer\I_EventPublisher.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Observer\P_ObserverPattern.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\Behavioral Patterns\Observer\_Class Diagram Observer Use Case.TcCD">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UseCase\P_USE_CASES.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Behavioral Patterns" />
+    <Folder Include="Behavioral Patterns\Command" />
+    <Folder Include="Behavioral Patterns\Singleton" />
+    <Folder Include="Behavioral Patterns\Observer" />
+    <Folder Include="Test\Behavioral Patterns\Singleton" />
+    <Folder Include="UseCase\Behavioral Patterns\Command\Commands" />
+    <Folder Include="UseCase\Behavioral Patterns\Command\Invokers" />
+    <Folder Include="UseCase\Behavioral Patterns\Command\Clients %28Receivers%29" />
+    <Folder Include="UseCase\Behavioral Patterns\Decorator" />
+    <Folder Include="UseCase\Behavioral Patterns\Decorator\LinkedList" />
+    <Folder Include="UseCase\Behavioral Patterns\Decorator\StringBuilder" />
+    <Folder Include="UseCase\Behavioral Patterns\Singleton\SingletonByProxy" />
+    <Folder Include="UseCase\Behavioral Patterns\Singleton\SingletonByProxy1">
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </Folder>
+    <Folder Include="UseCase\Behavioral Patterns\Strategy Pattern" />
+    <Folder Include="UseCase\Behavioral Patterns\Strategy Pattern\General" />
+    <Folder Include="UseCase\Behavioral Patterns\Strategy Pattern\General\Temperature sensor" />
+    <Folder Include="UseCase\Behavioral Patterns\Strategy Pattern\Interfaces" />
+    <Folder Include="UseCase\Behavioral Patterns\Strategy Pattern\Motors" />
+    <Folder Include="UseCase\Creational Patterns" />
+    <Folder Include="UseCase\Creational Patterns\Factory Pattern" />
+    <Folder Include="UseCase\Creational Patterns\Factory Pattern\Loggers" />
+    <Folder Include="UseCase\Creational Patterns\Factory Pattern\Loggers\DUTs" />
+    <Folder Include="UseCase\Creational Patterns\Factory Pattern\Loggers\POUs" />
+    <Folder Include="UseCase\Creational Patterns\Factory Pattern\Objects" />
+    <Folder Include="UseCase\Creational Patterns\Factory Pattern\Objects\DUTs" />
+    <Folder Include="UseCase\Creational Patterns\Factory Pattern\Objects\POUs" />
+    <Folder Include="UseCase\Creational Patterns\Factory Pattern\RoomControl" />
+    <Folder Include="UseCase\Creational Patterns\Factory Pattern\RoomControl\DUTs" />
+    <Folder Include="UseCase\Creational Patterns\Factory Pattern\RoomControl\POUs" />
+    <Folder Include="_Interfaces" />
+    <Folder Include="UseCase" />
+    <Folder Include="UseCase\Behavioral Patterns" />
+    <Folder Include="UseCase\Behavioral Patterns\Command" />
+    <Folder Include="UseCase\Behavioral Patterns\Singleton" />
+    <Folder Include="UseCase\Behavioral Patterns\Observer" />
+    <Folder Include="Test" />
+    <Folder Include="Test\Behavioral Patterns" />
+    <Folder Include="Test\Behavioral Patterns\Observer" />
+  </ItemGroup>
+  <ItemGroup>
+    <PlaceholderReference Include="Tc2_Standard">
+      <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Standard</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_System">
+      <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_System</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_Utilities">
+      <DefaultResolution>Tc2_Utilities, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Utilities</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_Module">
+      <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_Module</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="TcUnit">
+      <DefaultResolution>TcUnit, * (www.tcunit.org)</DefaultResolution>
+      <Namespace>TcUnit</Namespace>
+    </PlaceholderReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PLC.tmc">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Behavioral Patterns\Observer\GOF Design Patterns - Behavioral - Observer.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="UseCase\Behavioral Patterns\Command\_Readme_Command.txt">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="UseCase\Behavioral Patterns\Decorator\StringBuilder\_Readme_Decorator.txt">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="UseCase\Behavioral Patterns\Observer\_Readme_Observer.txt">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="UseCase\Behavioral Patterns\Singleton\SingletonByProxy1\_Readme_Singleton.txt">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="UseCase\Behavioral Patterns\Singleton\_Readme_Singleton.txt">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <SubObject Include="EventPublisherWithoutInheritance.ChangeEvent" />
+    <SubObject Include="FB_EventSubscriber.fbreinit">
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </SubObject>
+    <SubObject Include="FB_EventSubscriber2.fbreinit">
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </SubObject>
+    <SubObject Include="MySingleton.FB_reinit">
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </SubObject>
+    <SubObject Include="Observable.fbreinit">
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </SubObject>
+  </ItemGroup>
+  <ProjectExtensions>
+    <PlcProjectOptions>
+      <XmlArchive>
+        <Data>
+          <o xml:space="preserve" t="OptionKey">
+      <v n="Name">"&lt;ProjectRoot&gt;"</v>
+      <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
+        <v>{192FAD59-8248-4824-A8DE-9177C94C195A}</v>
+        <o>
+          <v n="Name">"{192FAD59-8248-4824-A8DE-9177C94C195A}"</v>
+          <d n="SubKeys" t="Hashtable" />
+          <d n="Values" t="Hashtable" />
+        </o>
+        <v>{29BD8D0C-3586-4548-BB48-497B9A01693F}</v>
+        <o>
+          <v n="Name">"{29BD8D0C-3586-4548-BB48-497B9A01693F}"</v>
+          <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
+            <v>Rules</v>
+            <o>
+              <v n="Name">"Rules"</v>
+              <d n="SubKeys" t="Hashtable" />
+              <d n="Values" t="Hashtable" />
+            </o>
+          </d>
+          <d n="Values" t="Hashtable" />
+        </o>
+        <v>{8F99A816-E488-41E4-9FA3-846536012284}</v>
+        <o>
+          <v n="Name">"{8F99A816-E488-41E4-9FA3-846536012284}"</v>
+          <d n="SubKeys" t="Hashtable" />
+          <d n="Values" t="Hashtable" />
+        </o>
+        <v>{40450F57-0AA3-4216-96F3-5444ECB29763}</v>
+        <o>
+          <v n="Name">"{40450F57-0AA3-4216-96F3-5444ECB29763}"</v>
+          <d n="SubKeys" t="Hashtable" />
+          <d n="Values" t="Hashtable" ckt="String">
+            <v>ActiveVisuExtensionsLength</v>
+            <v>0</v>
+            <v>ActiveVisuProfile</v>
+            <v>"IR0whWr8bwfwBwAAiD2qpQAAAABVAgAA37x72QAAAAABAAAAAAAAAAEaUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwACTHsAZgA5ADUAYgBiADQAMgA2AC0ANQA1ADIANAAtADQAYgA0ADUALQA5ADQAMAAwAC0AZgBiADAAZgAyAGUANwA3AGUANQAxAGIAfQADCE4AYQBtAGUABDBUAHcAaQBuAEMAQQBUACAAMwAuADEAIABCAHUAaQBsAGQAIAA0ADAAMgA0AC4ANwAFFlAAcgBvAGYAaQBsAGUARABhAHQAYQAGTHsAMQA2AGUANQA1AGIANgAwAC0ANwAwADQAMwAtADQAYQA2ADMALQBiADYANQBiAC0ANgAxADQANwAxADMAOAA3ADgAZAA0ADIAfQAHEkwAaQBiAHIAYQByAGkAZQBzAAhMewAzAGIAZgBkADUANAA1ADkALQBiADAANwBmAC0ANABkADYAZQAtAGEAZQAxAGEALQBhADgAMwAzADUANgBhADUANQAxADQAMgB9AAlMewA5AGMAOQA1ADgAOQA2ADgALQAyAGMAOAA1AC0ANAAxAGIAYgAtADgAOAA3ADEALQA4ADkANQBmAGYAMQBmAGUAZABlADEAYQB9AAoOVgBlAHIAcwBpAG8AbgALBmkAbgB0AAwKVQBzAGEAZwBlAA0KVABpAHQAbABlAA4aVgBpAHMAdQBFAGwAZQBtAE0AZQB0AGUAcgAPDkMAbwBtAHAAYQBuAHkAEAxTAHkAcwB0AGUAbQARElYAaQBzAHUARQBsAGUAbQBzABIwVgBpAHMAdQBFAGwAZQBtAHMAUwBwAGUAYwBpAGEAbABDAG8AbgB0AHIAbwBsAHMAEyhWAGkAcwB1AEUAbABlAG0AcwBXAGkAbgBDAG8AbgB0AHIAbwBsAHMAFCRWAGkAcwB1AEUAbABlAG0AVABlAHgAdABFAGQAaQB0AG8AcgAVIlYAaQBzAHUATgBhAHQAaQB2AGUAQwBvAG4AdAByAG8AbAAWFHYAaQBzAHUAaQBuAHAAdQB0AHMAFwxzAHkAcwB0AGUAbQAYGFYAaQBzAHUARQBsAGUAbQBCAGEAcwBlABkmRABlAHYAUABsAGEAYwBlAGgAbwBsAGQAZQByAHMAVQBzAGUAZAAaCGIAbwBvAGwAGyJQAGwAdQBnAGkAbgBDAG8AbgBzAHQAcgBhAGkAbgB0AHMAHEx7ADQAMwBkADUAMgBiAGMAZQAtADkANAAyAGMALQA0ADQAZAA3AC0AOQBlADkANAAtADEAYgBmAGQAZgAzADEAMABlADYAMwBjAH0AHRxBAHQATABlAGEAcwB0AFYAZQByAHMAaQBvAG4AHhRQAGwAdQBnAGkAbgBHAHUAaQBkAB8WUwB5AHMAdABlAG0ALgBHAHUAaQBkACBIYQBmAGMAZAA1ADQANAA2AC0ANAA5ADEANAAtADQAZgBlADcALQBiAGIANwA4AC0AOQBiAGYAZgBlAGIANwAwAGYAZAAxADcAIRRVAHAAZABhAHQAZQBJAG4AZgBvACJMewBiADAAMwAzADYANgBhADgALQBiADUAYwAwAC0ANABiADkAYQAtAGEAMAAwAGUALQBlAGIAOAA2ADAAMQAxADEAMAA0AGMAMwB9ACMOVQBwAGQAYQB0AGUAcwAkTHsAMQA4ADYAOABmAGYAYwA5AC0AZQA0AGYAYwAtADQANQAzADIALQBhAGMAMAA2AC0AMQBlADMAOQBiAGIANQA1ADcAYgA2ADkAfQAlTHsAYQA1AGIAZAA0ADgAYwAzAC0AMABkADEANwAtADQAMQBiADUALQBiADEANgA0AC0ANQBmAGMANgBhAGQAMgBiADkANgBiADcAfQAmFk8AYgBqAGUAYwB0AHMAVAB5AHAAZQAnVFUAcABkAGEAdABlAEwAYQBuAGcAdQBhAGcAZQBNAG8AZABlAGwARgBvAHIAQwBvAG4AdgBlAHIAdABpAGIAbABlAEwAaQBiAHIAYQByAGkAZQBzACgQTABpAGIAVABpAHQAbABlACkUTABpAGIAQwBvAG0AcABhAG4AeQAqHlUAcABkAGEAdABlAFAAcgBvAHYAaQBkAGUAcgBzACs4UwB5AHMAdABlAG0ALgBDAG8AbABsAGUAYwB0AGkAbwBuAHMALgBIAGEAcwBoAHQAYQBiAGwAZQAsEnYAaQBzAHUAZQBsAGUAbQBzAC1INgBjAGIAMQBjAGQAZQAxAC0AZAA1AGQAYwAtADQAYQAzAGIALQA5ADAANQA0AC0AMgAxAGYAYQA3ADUANgBhADMAZgBhADQALihJAG4AdABlAHIAZgBhAGMAZQBWAGUAcgBzAGkAbwBuAEkAbgBmAG8AL0x7AGMANgAxADEAZQA0ADAAMAAtADcAZgBiADkALQA0AGMAMwA1AC0AYgA5AGEAYwAtADQAZQAzADEANABiADUAOQA5ADYANAAzAH0AMBhNAGEAagBvAHIAVgBlAHIAcwBpAG8AbgAxGE0AaQBuAG8AcgBWAGUAcgBzAGkAbwBuADIMTABlAGcAYQBjAHkAMzBMAGEAbgBnAHUAYQBnAGUATQBvAGQAZQBsAFYAZQByAHMAaQBvAG4ASQBuAGYAbwA0MEwAbwBhAGQATABpAGIAcgBhAHIAaQBlAHMASQBuAHQAbwBQAHIAbwBqAGUAYwB0ADUaQwBvAG0AcABhAHQAaQBiAGkAbABpAHQAeQDQAAIaA9ADAS0E0AUGGgfQBwgaAUUHCQjQAAkaBEUKCwQDAAAABQAAAA0AAAAAAAAA0AwLrQIAAADQDQEtDtAPAS0Q0AAJGgRFCgsEAwAAAAUAAAANAAAAKAAAANAMC60BAAAA0A0BLRHQDwEtENAACRoERQoLBAMAAAAFAAAADQAAAAAAAADQDAutAgAAANANAS0S0A8BLRDQAAkaBEUKCwQDAAAABQAAAA0AAAAUAAAA0AwLrQIAAADQDQEtE9APAS0Q0AAJGgRFCgsEAwAAAAUAAAANAAAAAAAAANAMC60CAAAA0A0BLRTQDwEtENAACRoERQoLBAMAAAAFAAAADQAAAAAAAADQDAutAgAAANANAS0V0A8BLRDQAAkaBEUKCwQDAAAABQAAAA0AAAAAAAAA0AwLrQIAAADQDQEtFtAPAS0X0AAJGgRFCgsEAwAAAAUAAAANAAAAKAAAANAMC60EAAAA0A0BLRjQDwEtENAZGq0BRRscAdAAHBoCRR0LBAMAAAAFAAAADQAAAAAAAADQHh8tINAhIhoCRSMkAtAAJRoFRQoLBAMAAAADAAAAAAAAAAoAAADQJgutAAAAANADAS0n0CgBLRHQKQEtENAAJRoFRQoLBAMAAAADAAAAAAAAAAoAAADQJgutAQAAANADAS0n0CgBLRHQKQEtEJoqKwFFAAEC0AABLSzQAAEtF9AAHy0t0C4vGgPQMAutAQAAANAxC60XAAAA0DIarQDQMy8aA9AwC60CAAAA0DELrQMAAADQMhqtANA0Gq0A0DUarQA="</v>
+          </d>
+        </o>
+      </d>
+      <d n="Values" t="Hashtable" />
+    </o>
+        </Data>
+        <TypeList>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="Int32">System.Int32</Type>
+          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+          <Type n="String">System.String</Type>
+        </TypeList>
+      </XmlArchive>
+    </PlcProjectOptions>
+  </ProjectExtensions>
+</Project>

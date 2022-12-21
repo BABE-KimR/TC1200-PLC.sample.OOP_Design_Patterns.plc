@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="tempSensor_PT1000" Id="{c0c66743-b10d-45bf-ad67-6e8c1b0f5e19}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'This is a CLASS and should be accessed using methods or properties'}
+FUNCTION_BLOCK tempSensor_PT1000 EXTENDS tempSensor
+(*~
+<docu>
+	<summary>
+			Implementation of a PT1000 Temperature sensor class based on the base class tempSensor
+
+			Usage:
+			degreesC / degreesF return the Celcius / Fahrenheit value determined by the appropriate formula 		
+	</summary>				
+</docu>	
+~*)	]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*  
+	Principally a CLASS should be accessed using methods or properties
+	Good practice is not put code here, or call the class directly 
+	Or maybe just a call to a method calling the cyclic code 
+*)
+]]></ST>
+    </Implementation>
+    <Property Name="tempDegreesC" Id="{bb4b1eaa-4186-48ef-9f66-c5c9e653d108}">
+      <Declaration><![CDATA[PROPERTY tempDegreesC : REAL
+]]></Declaration>
+      <Get Name="Get" Id="{2725969b-6912-427b-bca3-12aff0d2d250}">
+        <Declaration><![CDATA[]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[tempDegreesC := TEMP_PT(
+			Res	:= TO_REAL(rawValue), 
+			R0	:= 1000.0
+			);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

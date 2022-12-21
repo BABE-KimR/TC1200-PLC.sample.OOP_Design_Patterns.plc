@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_LightControl_KNX" Id="{4bfb8e24-26f0-46e7-ba09-dfaf10e3fea7}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_LightControl_KNX implements I_LightControl
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="M_Reset" Id="{060e12cd-39cf-4221-89fd-edd7bb2e21d2}">
+      <Declaration><![CDATA[{warning 'add method implementation'}
+METHOD M_Reset : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Set" Id="{7d8ec49e-dc62-416f-9c79-9b6b11bcfe6f}">
+      <Declaration><![CDATA[{warning 'add method implementation'}
+METHOD M_Set : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="nAddress" Id="{f8bcdbf6-08f6-46c0-a28b-fcb41b814287}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY nAddress : DINT
+]]></Declaration>
+      <Get Name="Get" Id="{6c380f5e-0488-4ec5-b45d-b6f015a90661}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{f8d2898c-a8be-4b7e-823b-e60730ce811f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="nIlluminance" Id="{2e7a22a6-cb6d-43de-9202-f4effafa89f3}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY nIlluminance : REAL
+]]></Declaration>
+      <Get Name="Get" Id="{861defde-c3c9-443b-ab3f-417efb228dd0}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{d471587b-3b5a-4507-a541-c41bf27f3922}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <LineIds Name="FB_LightControl_KNX">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_LightControl_KNX.M_Reset">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_LightControl_KNX.M_Set">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_LightControl_KNX.nAddress.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_LightControl_KNX.nAddress.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_LightControl_KNX.nIlluminance.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_LightControl_KNX.nIlluminance.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

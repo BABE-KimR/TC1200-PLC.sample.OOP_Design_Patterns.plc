@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="EventPublisherWithoutInheritance" Id="{4c0b0b24-9663-4c35-9fa9-604c8ef8258b}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'FB_EventPublisher is a CLASS and must be accessed using methods or properties'}
+FUNCTION_BLOCK EventPublisherWithoutInheritance IMPLEMENTS I_CyclicCall, I_EventPublisher
+VAR
+	_event							: INT;
+	eventPrev						: INT;
+	
+	observable						: Observable;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+// The body of a class must not be used for code.  
+// Cyclic code should be called from a method if needed. 
+]]></ST>
+    </Implementation>
+    <Method Name="Attach" Id="{c9ce40e8-bcc6-4500-9619-392ddc240421}">
+      <Declaration><![CDATA[METHOD Attach : BOOL
+VAR_INPUT
+	observer	: I_Observer;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Attach := observable.Attach(observer);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="ChangeEvent" Id="{1c60e725-0b1f-46d6-9aa1-a3f4713694ce}">
+      <Declaration><![CDATA[PROPERTY PUBLIC ChangeEvent : int]]></Declaration>
+      <Set Name="Set" Id="{9205a428-5036-4b6d-9de1-ba82acd6a5db}">
+        <Declaration><![CDATA[// IMPLEMENTED ONLY FOR TESTING PURPOSES
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_event := changeEvent;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="CyclicCall" Id="{ee124ba0-9538-4355-8558-3d87eeb56a24}">
+      <Declaration><![CDATA[METHOD CyclicCall
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF eventPrev <> _event 			THEN
+	observable.Notify();
+	eventPrev := _event;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Detach" Id="{518a917b-c9bc-4569-aef7-26bf50032e7a}">
+      <Declaration><![CDATA[METHOD Detach : BOOL
+VAR_INPUT
+	observer	: I_Observer;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Detach := observable.Detach(observer);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Event" Id="{b8e24b7f-9137-4d0d-b490-03717be08423}">
+      <Declaration><![CDATA[// IMPLEMENTED ONLY FOR TESTING PURPOSES
+PROPERTY Event : int]]></Declaration>
+      <Get Name="Get" Id="{f9412143-d6cb-4b86-8269-e6d6eefff28e}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[event := _event;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
   <POU Name="FB_PT100" Id="{4cddf425-4391-4091-a74f-15d20369c1a0}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_PT100 EXTENDS FB_TempSensor IMPLEMENTS I_TempSensor
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_PT100 EXTENDS FB_TempSensor
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
 VAR
 	A							: REAL;
 	B							: REAL;

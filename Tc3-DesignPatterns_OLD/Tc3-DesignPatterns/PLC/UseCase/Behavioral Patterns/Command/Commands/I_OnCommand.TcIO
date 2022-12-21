@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <Itf Name="I_OnCommand" Id="{27cd863a-1f4c-4950-b003-e7bdb5d94782}">
+    <Declaration><![CDATA[INTERFACE I_OnCommand
+]]></Declaration>
+    <Property Name="IsOn" Id="{5c96e1e8-b25a-4553-bca5-7b707f5765b7}">
+      <Declaration><![CDATA[PROPERTY IsOn : Bool]]></Declaration>
+      <Get Name="Get" Id="{f864fd32-8ac4-4544-976a-58440b1a7e94}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Method Name="On" Id="{b8c07f9c-924a-422c-8bb6-74992f051256}">
+      <Declaration><![CDATA[METHOD On
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

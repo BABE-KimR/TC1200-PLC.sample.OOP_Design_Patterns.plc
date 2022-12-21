@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="Singleton" Id="{1fec6ed9-18c4-4ecc-9d78-ee702ee7f4c6}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'enable_dynamic_creation'}
+{attribute 'no_explicit_call' := 'Singleton is a CLASS and must be accessed using methods or properties'}
+FUNCTION_BLOCK Singleton IMPLEMENTS I_Singleton
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Message" Id="{4b938e4b-f5fd-41f0-8abe-0c4eadf8e1c5}">
+      <Declaration><![CDATA[METHOD Message : STRING
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Message := 'myMessage';]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

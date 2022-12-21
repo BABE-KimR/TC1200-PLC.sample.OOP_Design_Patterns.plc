@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <Itf Name="I_Singleton" Id="{a5eba910-5db8-4f2d-a1d3-8e1dad0343dd}">
+    <Declaration><![CDATA[INTERFACE I_Singleton
+]]></Declaration>
+    <Method Name="Message" Id="{d8f90746-29e8-4fd2-ac8e-814914aeaa76}">
+      <Declaration><![CDATA[METHOD Message : String
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

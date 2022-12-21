@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <Itf Name="I_CloseCommand" Id="{e1c2225f-c2c0-4c87-b625-922156b50961}">
+    <Declaration><![CDATA[INTERFACE I_CloseCommand
+]]></Declaration>
+    <Method Name="Close" Id="{edc8b81a-462d-44c4-942f-777aaaf61946}">
+      <Declaration><![CDATA[METHOD Close
+]]></Declaration>
+    </Method>
+    <Property Name="IsClosed" Id="{1c576359-fd7f-4f41-9bcc-e0c73d25517e}">
+      <Declaration><![CDATA[PROPERTY IsClosed : Bool]]></Declaration>
+      <Get Name="Get" Id="{f9770f1f-1b46-42ab-bb94-568e89830f63}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+  </Itf>
+</TcPlcObject>

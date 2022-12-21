@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="OnCommand" Id="{1bf958bb-8da5-4fe5-b211-cd925c9324ef}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'LightOnCommand is a CLASS and must be accessed using methods or properties'}
+FUNCTION_BLOCK OnCommand IMPLEMENTS I_Command
+VAR
+	_onCommand					: I_OnCommand;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+// The body of a class must not be used for code.  
+// Cyclic code should be called from a method if needed. 
+]]></ST>
+    </Implementation>
+    <Method Name="Execute" Id="{5599378b-6469-4527-9f92-5b5e4c526886}">
+      <Declaration><![CDATA[METHOD Execute
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_onCommand.On();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{252dd9d1-9b47-4982-9556-4413dd5fe75a}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	OnCommand			: I_OnCommand;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_onCommand  := OnCommand;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

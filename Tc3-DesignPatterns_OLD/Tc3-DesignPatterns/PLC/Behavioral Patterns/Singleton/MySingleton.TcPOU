@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="MySingleton" Id="{55dfbb2e-8b31-4adc-9b74-9c9815495848}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'MySingleton is a CLASS and must be accessed using methods or properties'}
+FUNCTION_BLOCK MySingleton IMPLEMENTS I_Singleton
+VAR 
+	singleton					: I_Singleton;	// define the static class instance	
+	singletonInstance			: POINTER TO Singleton;
+END_VAR	
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_exit" Id="{89502b3d-46b3-4094-b7c6-c45203e84f2c}">
+      <Declaration><![CDATA[METHOD FB_exit : BOOL
+VAR_INPUT
+	bInCopyCode : BOOL; // if TRUE, the exit method is called for exiting an instance that is copied afterwards (online change).
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// first instance? 
+IF singletonInstance <> 0	THEN
+	singleton := 0;
+	__DELETE(singletonInstance);
+	singletonInstance:=0;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{225be5fa-b9fe-410e-8547-134eed75cdee}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// first instance? 
+IF singletonInstance = 0	THEN
+	singletonInstance := __NEW(Singleton);
+	singleton := singletonInstance^;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_reinit" Id="{834bc95d-6912-4d09-935b-4149d369289a}">
+      <Declaration><![CDATA[METHOD FB_reinit : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[__DELETE(singletonInstance);
+singleton := 0;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Message" Id="{b61cfcdd-f85d-4a75-ace3-04e90f0c86cb}">
+      <Declaration><![CDATA[METHOD Message : STRING
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF singleton <> 0 THEN
+	Message := singleton.Message();
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

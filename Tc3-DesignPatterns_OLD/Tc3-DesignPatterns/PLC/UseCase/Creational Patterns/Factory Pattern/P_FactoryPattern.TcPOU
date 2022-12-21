@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="P_FactoryPattern" Id="{12c4927e-3c5f-4946-b8db-cd92bc3a37bc}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_FactoryPattern
+VAR
+// *************** OBJECT FACTORY
+	arrstObjects			: ARRAY[1..NUMBEROFOBJECTS] OF ST_ObjectDef := 
+								[
+								(sObjectID:='Motor 01',eObjectType:=E_Objects.MOTOR),
+								(sObjectID:='Cylinder 01',eObjectType:=E_Objects.CYLINDER),
+								(sObjectID:='Door 01',eObjectType:=E_Objects.DOOR),
+								(sObjectID:='Cylinder 02',eObjectType:=E_Objects.CYLINDER),
+								(sObjectID:='Motor 02',eObjectType:=E_Objects.MOTOR),
+								(sObjectID:='Spare 01',eObjectType:=E_Objects.UNDEFINED,bReleaseIfExists:=TRUE)								
+								];
+	// Object factory creating the above defined objects
+	fbObjectFactory			: FB_ObjectFactory;
+	arrfbObjects			: ARRAY[1..NUMBEROFOBJECTS] OF FB_Object; 
+	bInit					: BOOL := TRUE;
+	// Test data retrieval	
+	arrsObjectDescription	: ARRAY[1..NUMBEROFOBJECTS] OF STRING;
+	i						: INT;	
+	// test destructor
+	bDestruct				: BOOL;
+	nDestruct				: INT;
+	
+// *************** LOGGER FACTORY
+	fbFileLoggerFactory	  : FB_FileLoggerFactory('File.csv');
+	refFileLoggerFactory  : REFERENCE TO FB_FileLoggerFactory := fbFileLoggerFactory;
+	fbLogger 			  : FB_Logger(refFileLoggerFactory);	
+	sRetMsg				  : STRING;
+		
+// *************** ROUTER
+	// router info (memory consumption)
+	fbGetRouterStatusInfo 	: FB_GetRouterStatusInfo;
+	stTCRouterStatusInfo	: ST_TCRouterStatusInfo;
+	memAvailable			: DWORD;
+END_VAR
+VAR CONSTANT
+	NUMBEROFOBJECTS			: INT := 7;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// *************** OBJECT FACTORY
+IF bInit	THEN
+	// define the pointers to the objects in the array
+	aObjectFactoring();	
+	bInit 			:= FALSE;
+END_IF
+
+// test retrieve data from created objects
+FOR i := 1 TO NUMBEROFOBJECTS DO
+	arrsObjectDescription[i] := arrfbObjects[i].M_GetObjectDescription();	
+END_FOR
+
+// destroy objects / free memory
+IF bDestruct		THEN
+	IF nDestruct > 0 AND nDestruct <= NUMBEROFOBJECTS THEN
+		arrfbObjects[nDestruct].Destruct();
+	END_IF
+	bDestruct := FALSE;
+END_IF
+
+
+// *************** LOGGER FACTORY
+sRetMsg := fbLogger.Write('Hello');
+
+
+// *************** ROUTER INFO
+// router status
+fbGetRouterStatusInfo(
+	sNetId:= , 
+	bExecute:= NOT fbGetRouterStatusInfo.bBusy, 
+	tTimeout:= , 
+	bBusy=> , 
+	bError=> , 
+	nErrID=> , 
+	info=> stTCRouterStatusInfo
+	);
+IF stTCRouterStatusInfo.maxMemAvail	> 0 THEN
+	memAvailable := stTCRouterStatusInfo.maxMemAvail;
+END_IF]]></ST>
+    </Implementation>
+    <Action Name="aObjectFactoring" Id="{e60fa3f2-a001-4ba5-afd8-5f0e893c7d5c}">
+      <Implementation>
+        <ST><![CDATA[// loop through definitions and create instances
+FOR i := 1 TO NUMBEROFOBJECTS	DO
+	fbObjectFactory(
+		stObjectDef		:=arrstObjects[i], 
+		fbObject		:=arrfbObjects[i]);
+END_FOR
+]]></ST>
+      </Implementation>
+    </Action>
+    <LineIds Name="P_FactoryPattern">
+      <LineId Id="200" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="97" Count="0" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="129" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="32" Count="1" />
+      <LineId Id="119" Count="0" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="131" Count="0" />
+      <LineId Id="137" Count="0" />
+      <LineId Id="135" Count="0" />
+      <LineId Id="138" Count="1" />
+      <LineId Id="136" Count="0" />
+      <LineId Id="194" Count="3" />
+      <LineId Id="140" Count="0" />
+      <LineId Id="198" Count="1" />
+      <LineId Id="130" Count="0" />
+      <LineId Id="142" Count="6" />
+      <LineId Id="141" Count="0" />
+      <LineId Id="150" Count="1" />
+      <LineId Id="153" Count="1" />
+    </LineIds>
+    <LineIds Name="P_FactoryPattern.aObjectFactoring">
+      <LineId Id="40" Count="1" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="1" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

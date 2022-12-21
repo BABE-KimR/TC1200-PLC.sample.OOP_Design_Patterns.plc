@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="P_USE_CASES" Id="{eefeacb5-5398-4253-85cf-693bcef426f0}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_USE_CASES
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Behavioral patterns
+P_ObserverPattern();
+P_Decorator();
+P_CommandPattern();
+P_Singleton();
+//P_SingletonByProxy();
+
+ 
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

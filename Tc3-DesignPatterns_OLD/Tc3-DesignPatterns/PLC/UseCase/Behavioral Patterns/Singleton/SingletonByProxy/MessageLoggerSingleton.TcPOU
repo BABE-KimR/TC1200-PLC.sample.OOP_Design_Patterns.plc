@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="MessageLoggerSingleton" Id="{1b3b14f1-e859-411d-8a61-143a2d245380}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'enable_dynamic_creation'}
+{attribute 'no_explicit_call' := 'Singleton is a CLASS and must be accessed using methods or properties'}
+FUNCTION_BLOCK MessageLoggerSingleton IMPLEMENTS I_MessageLogger // USE MessageLogger!!
+VAR
+	_message			: STRING;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="LogMessage" Id="{f8faff62-0ffe-4874-8d15-d05f819a7ee1}">
+      <Declaration><![CDATA[METHOD LogMessage : STRING
+VAR_INPUT
+	message			: STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_message := message; ]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="message" Id="{5619e4e7-2180-4d80-8812-68d9458f0fb9}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY message : STRING
+]]></Declaration>
+      <Get Name="Get" Id="{44bc55b8-7b5b-416c-a6ac-373ae3646477}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[message  := _message;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

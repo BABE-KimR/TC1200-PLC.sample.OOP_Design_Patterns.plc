@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="tempSensor" Id="{d20820a4-0d8a-43f0-b4e4-a3d10b2764cf}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'This is a CLASS and should be accessed using methods or properties'}
+FUNCTION_BLOCK tempSensor IMPLEMENTS ITempSensor
+VAR
+	rawValue			AT %I*	: INT;		// measurement value of sensor
+END_VAR
+(*~
+<docu>
+	<summary>
+			Implementation of a Temperature sensor class
+			
+			The base class returns the raw value / 10
+			
+			Usage as follows :
+			<code>
+				FUNCTION_BLOCK concreteTempSensor
+			</code>
+	</summary>				
+</docu>	
+~*)	]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*  
+	Principally a CLASS should be accessed using methods or properties
+	Good practice is not put code here, or call the class directly 
+	Or maybe just a call to a method calling the cyclic code 
+*)
+]]></ST>
+    </Implementation>
+    <Property Name="DEBUG_setRawValue" Id="{76a478b5-6270-42a6-acb5-eb7b54feeabf}">
+      <Declaration><![CDATA[PROPERTY DEBUG_setRawValue : int]]></Declaration>
+      <Set Name="Set" Id="{fa65bf7e-b76b-401a-b1ce-930d9ba13f51}">
+        <Declaration><![CDATA[]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[rawValue := DEBUG_setRawValue;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="tempDegreesC" Id="{c49019f1-6006-4949-b3d8-056b3bd18f09}">
+      <Declaration><![CDATA[PROPERTY tempDegreesC : REAL
+]]></Declaration>
+      <Get Name="Get" Id="{4612a9b8-fd8b-4cc7-9297-b882c56e5472}">
+        <Declaration><![CDATA[]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[// Returns the value of the terminal / 10
+tempDegreesC := TO_REAL(rawValue) / 10.0;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="tempDegreesF" Id="{72849509-ef7b-4907-851c-9974a9f3f525}">
+      <Declaration><![CDATA[PROPERTY tempDegreesF : REAL
+]]></Declaration>
+      <Get Name="Get" Id="{c0d1833f-f608-4d9d-84a6-40a8ee099b63}">
+        <Declaration><![CDATA[]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[tempDegreesF := C_TO_F(celsius:=tempDegreesC);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

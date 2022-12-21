@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <Itf Name="I_Object" Id="{9f723344-3ed7-46e6-9871-bfaff6cf66eb}">
+    <Declaration><![CDATA[// Abstract class definition
+INTERFACE I_Object
+]]></Declaration>
+    <Method Name="Destruct" Id="{47bb2873-15d0-4a56-a9a1-c987f86a577d}">
+      <Declaration><![CDATA[METHOD Destruct : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="M_GetObjectDescription" Id="{127722c9-7c62-4b09-8d35-fb4f017ef219}">
+      <Declaration><![CDATA[METHOD M_GetObjectDescription : STRING
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="M_Reset" Id="{c8050cc7-09e5-4b8b-b3a7-d2dae8ca5cde}">
+      <Declaration><![CDATA[METHOD M_Reset : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="M_Start" Id="{bb365a86-f469-4f29-a3ed-e6035f8282a9}">
+      <Declaration><![CDATA[METHOD M_Start : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Property Name="P_Status" Id="{86f884c6-027a-47fc-bf60-59a41ae97ef9}">
+      <Declaration><![CDATA[PROPERTY P_Status : DWORD]]></Declaration>
+      <Get Name="Get" Id="{524908dc-9e80-4acd-b18e-ece815e2ecd9}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+  </Itf>
+</TcPlcObject>
