@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{296a8ca6-4998-4276-ac04-88783f07161a}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* 
+	GOF 		Attach additional responsibilities to an object dynamically. Decorators
+				provide a flexible alternative to subclassing for extending functionality.   
+*)
+P_Decorator();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

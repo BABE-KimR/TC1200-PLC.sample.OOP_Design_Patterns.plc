@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Task Name="PlcTask" Id="{5d6fff2e-3680-46ca-b6b1-1f5f1db4667c}">
+    <!--CycleTime in micro seconds.-->
+    <CycleTime>10000</CycleTime>
+    <Priority>20</Priority>
+    <PouCall>
+      <Name>P_Memento</Name>
+    </PouCall>
+    <TaskFBGuid>{dd71ffb2-b67a-466f-ad7b-04340f31a93a}</TaskFBGuid>
+    <Fb_init>{a1a5fe93-9444-43e9-9f29-5fd59339eb90}</Fb_init>
+    <Fb_exit>{ad87c535-36e3-4eb3-9546-4f3162240127}</Fb_exit>
+    <CycleUpdate>{84214aa7-bfe1-437e-b361-95b28cd6d0a1}</CycleUpdate>
+    <PostCycleUpdate>{d82f6603-efb7-48f2-92f7-da016b40f3c2}</PostCycleUpdate>
+  </Task>
+</TcPlcObject>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{17b17988-6f38-4e7c-86c4-bf2f5302bd6d}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* 
+	GOF 		Without violating encapsulation, capture and externalize an object's internal state
+				so that the object can be restored to this state later  
+*)
+P_Memento();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

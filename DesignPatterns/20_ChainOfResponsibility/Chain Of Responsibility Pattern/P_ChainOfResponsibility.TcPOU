@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="P_ChainOfResponsibility" Id="{548eb42f-a3d3-4f66-98bf-af2a606450eb}" SpecialFunc="None">
+    <Declaration><![CDATA[// Copyright (c) 2021, John Helfrich
+PROGRAM P_ChainOfResponsibility
+VAR
+	h1				:	FB_StaticHandler1;
+	h2				:	FB_StaticHandler2;
+	h3				:	FB_StaticHandler3;
+	h_n				:	FB_StaticHandler_n;
+	request 		:	STRING	:= 'Hello world!';
+	xStartProcess	: 	BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[h1.setNext(h2);
+h2.setNext(h3);
+h3.setNext(h_n);
+
+(*************************************************************
+*************SIMULATION***************************************
+***
+*** Leave request as "hello world!" for full chain processing
+*** or use the string phrases below to interupt the chain.
+***
+***	Handler 1 - request := 'Handler 1 Interupt';
+*** Handler 2 - request := 'Handler 2 Interupt';
+*** Handler 3 - request := 'Handler 3 Interupt';
+**************************************************************
+*************************************************************)
+
+IF xStartProcess THEN
+	xStartProcess := FALSE;
+	h1.handle(request);
+END_IF
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

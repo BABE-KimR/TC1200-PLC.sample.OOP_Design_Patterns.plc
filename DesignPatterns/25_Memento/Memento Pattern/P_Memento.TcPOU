@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="P_Memento" Id="{1698814c-39e9-4892-a8e6-12db40cd7d4c}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_Memento
+VAR
+	// Recipe editor and backup object
+	pBackup : POINTER TO Snapshot;
+	editor : RecipeEditor;
+	
+	// Recipe settings
+	sTitle: STRING := 'Recipe 1';
+	sRecipeSteps : ARRAY[1..5] OF STRING := ['Move Home', 'Move To Station A', 'Heater On', 'Apply Heat', 'Heater Off'];
+	
+	// Demo program control values
+	bSetValues	: BOOL;
+	bMakeBackup : BOOL;
+	bRestore	: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Set the recipe values
+IF bSetValues THEN
+	bSetValues := FALSE;
+	editor.setRecipe(sRecipeSteps);
+	editor.setTitle(sTitle);
+END_IF
+
+// Make a backup at any time
+IF bMakeBackup THEN
+	bMakeBackup := FALSE;
+	pBackup := editor.createSnapshot();
+END_IF
+
+// Restore to the backup state
+IF bRestore AND (pBackup <> 0)THEN
+	bRestore := FALSE;
+	pBackup^.restore();
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

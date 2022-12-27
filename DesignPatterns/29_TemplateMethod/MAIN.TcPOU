@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{f66ea7df-ba2b-41b6-890c-d7c0d96d098c}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* 
+	GOF 		Define the skeleton of an algorithm in an operation, deferring some steps to subclasses.
+				Template method lets subclasses redefine certain steps of an algorithm without changing 
+				the algorithm's structure. 
+*)
+P_TemplateMethod();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

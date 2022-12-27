@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.35" ClassName="CNestedPlcProjDef">
+	<Project GUID="{77113145-0F20-4288-AF26-597A67ACF40E}" Name="02_Decorator" PrjFilePath="..\..\02_Decorator\02_Decorator.plcproj" TmcFilePath="..\..\02_Decorator\02_Decorator.tmc" ReloadTmc="true" AmsPort="853" TargetArchiveSettings="#x0003" FileArchiveSettings="#x000e" SymbolicMapping="true">
+		<Instance Id="#x08502080" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="02_Decorator\02_Decorator.tmc" TmcHash="{809BB3D3-8200-6F9C-852D-B8B4838B5B17}">
+			<Name>02_Decorator Instance</Name>
+			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+			<Contexts>
+				<Context>
+					<Id NeedCalleeCall="true">0</Id>
+					<Name>PlcTask</Name>
+					<ManualConfig>
+						<OTCID>#x02010030</OTCID>
+					</ManualConfig>
+					<Priority>20</Priority>
+					<CycleTime>10000000</CycleTime>
+				</Context>
+			</Contexts>
+			<TaskPouOids>
+				<TaskPouOid Prio="20" OTCID="#x08502081"/>
+			</TaskPouOids>
+		</Instance>
+	</Project>
+</TcSmItem>

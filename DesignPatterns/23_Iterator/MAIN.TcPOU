@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{7374b7b3-319b-4388-af69-c8d8b6b3953f}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* 
+	GOF 		Provide a way to access the elements of an aggregate object sequentially 
+				without exposing its underlying representation 
+*)
+P_Iterator();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

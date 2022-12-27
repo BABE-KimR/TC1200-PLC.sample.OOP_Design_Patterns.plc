@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{89ccf36b-f341-4421-bd55-3f0b5179fcd6}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* 
+	GOF 		Define a one-to-many dependency between objects so that when one object changes state, 
+				all its dependents are notified and updated automatically   
+*)
+P_ObserverPattern();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

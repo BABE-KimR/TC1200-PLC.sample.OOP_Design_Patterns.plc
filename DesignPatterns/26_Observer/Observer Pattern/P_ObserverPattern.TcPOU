@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="P_ObserverPattern" Id="{6a33dd3e-4d54-4c64-8e83-77f86981fd08}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_ObserverPattern
+VAR
+	eventPublisher					: EventPublisherWithInheritance;
+	eventPublisher2					: EventPublisherWithComposition;	
+	
+	eventSubscriber					: FB_EventSubscriber(eventPublisher);	
+	eventSubscriber2				: FB_EventSubscriber2(eventPublisher2);	
+	
+	triggerEvent					: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Property changeEvent was only to be able to change the event from outside for the unit test
+// Change according the use case of the observer
+IF triggerEvent	THEN
+	eventPublisher.changeEvent := eventPublisher.event + 1;
+	eventPublisher2.changeEvent := eventPublisher2.event + 1;
+	triggerEvent := FALSE;
+END_IF
+eventPublisher.CyclicCall();
+eventPublisher2.CyclicCall();
+eventSubscriber.CyclicCall();
+eventSubscriber2.CyclicCall();
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

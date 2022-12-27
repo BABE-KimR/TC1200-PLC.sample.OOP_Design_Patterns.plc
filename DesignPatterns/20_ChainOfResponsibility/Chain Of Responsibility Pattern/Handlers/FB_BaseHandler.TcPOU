@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_BaseHandler" Id="{7eab2335-2d54-0ddf-2342-12eecb574733}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_BaseHandler IMPLEMENTS I_Handler
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	next : I_Handler;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="handle" Id="{204f7f35-0355-0be7-3d2d-24f32106f310}">
+      <Declaration><![CDATA[METHOD handle : BOOL
+VAR_INPUT
+	request	:	STRING;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ADR(next) <> 0 THEN
+	next.handle(request);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="setNext" Id="{a7fa726b-1920-05a5-1ea2-2145989fb668}">
+      <Declaration><![CDATA[METHOD setNext : BOOL
+VAR_INPUT
+	h	: I_Handler;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[next := h;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

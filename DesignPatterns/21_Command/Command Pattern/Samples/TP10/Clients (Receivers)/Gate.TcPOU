@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Gate" Id="{8a1d58b5-97e9-41da-a416-67ec0319fefe}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'Gate is a CLASS and must be accessed using methods or properties'}
+FUNCTION_BLOCK Gate IMPLEMENTS I_OpenCommand, I_CloseCommand
+VAR
+	openGate					AT %Q*: BOOL;
+	closeGate					AT %Q*: BOOL;
+	gateIsOpen					AT %I*: BOOL;
+	gateIsClosed				AT %I*: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+// The body of a class must not be used for code.  
+// Cyclic code should be called from a method if needed. 
+]]></ST>
+    </Implementation>
+    <Method Name="Close" Id="{666587c5-fa1b-4054-884f-aaf313e6576b}">
+      <Declaration><![CDATA[METHOD Close
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[openGate	:= FALSE;
+closeGate	:= NOT gateIsClosed; 	// Close until closed
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CyclicCall" Id="{f77ba616-e93a-4b58-a3c8-22924538f9a1}">
+      <Declaration><![CDATA[METHOD CyclicCall
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF 		closeGate 		THEN
+	Close();
+ELSIF 	openGate 		THEN
+	Open();
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="IsClosed" Id="{4d8ef7ea-6f63-4e42-bb3b-6033d89c734a}">
+      <Declaration><![CDATA[PROPERTY IsClosed : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{1ce93ebe-e313-4e65-a214-c29b53054926}">
+        <Declaration><![CDATA[]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IsClosed := gateIsClosed;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="IsOpen" Id="{dfca3071-e9a1-406c-b6af-4d1734797639}">
+      <Declaration><![CDATA[PROPERTY IsOpen : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{eb3e1315-78cd-4510-a440-b04891e16339}">
+        <Declaration><![CDATA[]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IsOpen := gateIsOpen;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Open" Id="{a14af5e6-4339-4ef8-a520-e610eb7c0e84}">
+      <Declaration><![CDATA[METHOD Open
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[closeGate 	:= FALSE;
+openGate 	:= NOT gateIsOpen; 		// Open until opened]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

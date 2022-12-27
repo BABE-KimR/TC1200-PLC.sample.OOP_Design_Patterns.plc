@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="EventPublisherWithInheritance" Id="{270e0f21-f10c-4d6e-aaab-748f1b75e82c}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'FB_EventPublisher is a CLASS and must be accessed using methods or properties'}
+FUNCTION_BLOCK EventPublisherWithInheritance EXTENDS Observable IMPLEMENTS I_EventPublisher
+VAR
+	_event							: INT;
+	eventPrev						: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+// The body of a class must not be used for code.  
+// Cyclic code should be called from a method if needed. 
+]]></ST>
+    </Implementation>
+    <Property Name="ChangeEvent" Id="{05b37224-02c8-4354-b619-b3cf8f6eb51f}">
+      <Declaration><![CDATA[PROPERTY PUBLIC ChangeEvent : int]]></Declaration>
+      <Set Name="Set" Id="{eda01090-ae55-40a9-bf93-25e50f34c0d7}">
+        <Declaration><![CDATA[// IMPLEMENTED ONLY FOR TESTING PURPOSES
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_event := changeEvent;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="CyclicCall" Id="{25dae251-2438-4d8e-9422-bfc6edc85504}">
+      <Declaration><![CDATA[METHOD CyclicCall
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF eventPrev <> _event 			THEN
+	notify();
+	eventPrev := _event;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Event" Id="{5a53bf6d-f733-4ff7-bc62-c7e9a7ce7ec4}">
+      <Declaration><![CDATA[// IMPLEMENTED ONLY FOR TESTING PURPOSES
+PROPERTY Event : int]]></Declaration>
+      <Get Name="Get" Id="{cdadf8c7-7fab-4fb4-84ee-b1e660efac40}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[event := _event;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

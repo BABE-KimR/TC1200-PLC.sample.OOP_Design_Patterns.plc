@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_Observer" Id="{de98d1d4-302a-4e6f-ba3c-1046bb2a57ee}">
+    <Declaration><![CDATA[INTERFACE I_Observer
+]]></Declaration>
+    <Method Name="Update" Id="{a3f32625-1add-4abd-a689-749044a635c3}">
+      <Declaration><![CDATA[METHOD Update : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

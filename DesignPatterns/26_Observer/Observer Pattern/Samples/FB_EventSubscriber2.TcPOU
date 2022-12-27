@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_EventSubscriber2" Id="{78948430-835f-4189-b81a-4f54b3428e0d}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'FB_EventSubscriber2 is a CLASS and must be accessed using methods or properties'}
+FUNCTION_BLOCK FB_EventSubscriber2 IMPLEMENTS I_Observer
+VAR	
+	_eventPublisher					: I_EventPublisher;
+	_event							: INT;
+	
+	verbose							: BOOL := TRUE;
+
+	// Register after online change 
+	registeredAtPublisher			: BOOL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="ChangePublisher" Id="{b82c57d4-07cb-44c7-864e-1e74061ee3c0}">
+      <Declaration><![CDATA[METHOD ChangePublisher
+VAR_INPUT
+	eventPublisher					: I_EventPublisher;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_eventPublisher := eventPublisher;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="CyclicCall" Id="{813f3800-9a9d-49a8-8314-108456391f94}">
+      <Declaration><![CDATA[METHOD CyclicCall]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Did we already register in the publisher?
+IF NOT registeredAtPublisher	THEN
+	registeredAtPublisher := _eventPublisher.attach(THIS^);
+END_IF 
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Event" Id="{f7d82526-a931-4e30-a053-e21dab4a5b58}">
+      <Declaration><![CDATA[// IMPLEMENTED ONLY FOR TESTING PURPOSES
+PROPERTY Event : int]]></Declaration>
+      <Get Name="Get" Id="{cb387898-5525-4e40-991f-721856700c04}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[event := _event;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="FB_init" Id="{9e8dfe64-a211-4cb9-b462-4a3daa4de15a}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains	 				: BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode 					: BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	eventPublisher					: I_EventPublisher;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_eventPublisher := eventPublisher;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="fbreinit" Id="{4f4019a2-6dab-4552-accd-abde4ac41c58}">
+      <Declaration><![CDATA[{attribute 'call_after_online_change_slot' := '0'}
+METHOD PRIVATE fbreinit
+
+(*	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+   	THIS METHOD is force called after every online change 
+   	!= the fb_reinit system call that will be called after the instance of the concerned function block has been copied 
+ 	(during an online change after modifications in the function block declaration)
+
+	This is necessary since both observer en observee have references to one other
+	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	*) 
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[registeredAtPublisher := FALSE;
+breinit:=not breinit; // flip the test marker]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="message" Id="{89c2fe32-3b54-4706-b6a2-e8e1e9486d7b}">
+      <Declaration><![CDATA[METHOD PRIVATE message : BOOL
+VAR_INPUT
+	dintArg						: DINT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Log message
+IF verbose  THEN
+	ADSLOGDINT(
+		msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG, // ADSLOG_MSGTYPE_ERROR OR ADSLOG_MSGTYPE_LOG, 
+		msgFmtStr 	:= 'Subscriber 2 knows the value changed to %d',
+		dintArg 	:= dintArg
+		);
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Update" Id="{abb6583e-4f5d-489c-9536-8dff87c43972}">
+      <Declaration><![CDATA[METHOD Update : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// the publisher mentions an update, fetch the data
+_event := _eventPublisher.event;
+message(TO_DINT(_event));
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

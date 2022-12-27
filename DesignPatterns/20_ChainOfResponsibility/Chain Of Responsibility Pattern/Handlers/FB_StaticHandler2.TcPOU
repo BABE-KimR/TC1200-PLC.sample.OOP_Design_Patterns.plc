@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_StaticHandler2" Id="{5238f448-472e-0945-35a7-80c7883a2525}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_StaticHandler2 EXTENDS FB_BaseHandler
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="handle" Id="{5e7f19f0-8281-0edd-28fe-3ac1bf26de7d}">
+      <Declaration><![CDATA[METHOD handle : BOOL
+VAR_INPUT
+	request	:	STRING;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF request = 'Handler 2 Interupt' THEN
+	ADSLOGSTR(ADSLOG_MSGTYPE_MSGBOX, request, ' ');
+ELSE
+	ADSLOGSTR(ADSLOG_MSGTYPE_MSGBOX, '@H2 Moving to next handler ', '');
+	SUPER^.handle(request);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

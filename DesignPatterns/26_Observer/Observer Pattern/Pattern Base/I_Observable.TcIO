@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_Observable" Id="{92b7bf86-f502-4443-a681-1395d2e7a02b}">
+    <Declaration><![CDATA[INTERFACE I_Observable
+]]></Declaration>
+    <Method Name="Attach" Id="{0c7c04d3-78f3-48f4-bbec-83732994fd63}">
+      <Declaration><![CDATA[METHOD Attach : bool
+VAR_INPUT
+	observer			: I_Observer;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Detach" Id="{4789ce54-6561-4dbb-8386-3e0f8920de6e}">
+      <Declaration><![CDATA[METHOD Detach : BOOL
+VAR_INPUT
+	observer			: I_Observer;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

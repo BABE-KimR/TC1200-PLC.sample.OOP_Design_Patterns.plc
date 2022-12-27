@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{077c4be3-dced-421d-b974-0e66d7df0dc1}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* 
+	GOF 		Avoid coupling the sender of a request to its receiver by giving more than one
+				object the chance to handle the request. Chain the receiving objects and pass 
+				the request along the chain until an object handles it    
+*)
+P_ChainOfResponsibility();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

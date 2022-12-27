@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Observable" Id="{e2a73847-3ae9-41c4-a05d-e034052bdb33}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'no_explicit_call' := 'Observable is a CLASS and must be accessed using methods or properties'}
+FUNCTION_BLOCK Observable IMPLEMENTS I_Observable
+VAR
+	verbose							: BOOL := TRUE;
+	observers						: ARRAY[1..MAXOBSERVERS] OF I_Observer;
+END_VAR
+VAR CONSTANT
+	MAXOBSERVERS					: INT := 5;		
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+// The body of a class must not be used for code.  
+// Cyclic code should be called from a method if needed. 
+]]></ST>
+    </Implementation>
+    <Method Name="attach" Id="{8777bfbf-0b24-4d4c-bfbb-b615baf81400}">
+      <Declaration><![CDATA[METHOD attach : BOOL
+VAR_INPUT
+	observer			: I_Observer;
+END_VAR
+VAR
+	i					: INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[(* default *)
+attach := FALSE;
+
+(* loop if the subscriber is already registered *)
+FOR i := 1 TO MAXOBSERVERS DO
+	IF observers[i] = observer 	THEN
+		observer.update();
+		attach := TRUE;
+		RETURN;
+	END_IF
+END_FOR
+
+(* loop for first free position if not yet attached *)
+FOR i := 1 TO MAXOBSERVERS DO
+	IF observers[i] = 0 	THEN
+		observers[i] := observer;
+		message('Observer registered');
+		observer.update();
+		attach := TRUE;
+		EXIT;
+	END_IF
+END_FOR
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="detach" Id="{e9b4dda7-c343-4f9f-a3ca-f5b9e6583823}">
+      <Declaration><![CDATA[METHOD detach : BOOL
+VAR_INPUT
+	observer			: I_Observer;
+END_VAR
+VAR
+	i					: INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[(* default *)
+detach := FALSE;
+
+(* loop if the subscriber is already registered *)
+FOR i := 1 TO MAXOBSERVERS DO
+	IF observers[i] = observer 	THEN
+		observers[i] := 0;
+		message('Observer deregistered');
+		detach := TRUE;
+		RETURN;
+	END_IF
+END_FOR
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="message" Id="{bdd75991-46b2-4d02-b68d-98ecf52da978}">
+      <Declaration><![CDATA[METHOD PRIVATE message : BOOL
+VAR_INPUT
+	strArg						: STRING;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Log message
+IF verbose  THEN
+	ADSLOGSTR(
+		msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG, // ADSLOG_MSGTYPE_ERROR OR ADSLOG_MSGTYPE_LOG, 
+		msgFmtStr 	:= '%s',
+		strArg 		:= strArg
+		);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="noOfAttachedObservers" Id="{5bbf002f-f9f1-4de2-9982-3bdcbd5a4adc}">
+      <Declaration><![CDATA[PROPERTY noOfAttachedObservers : int]]></Declaration>
+      <Get Name="Get" Id="{a014369f-9eb1-4618-82ee-295f2393511e}">
+        <Declaration><![CDATA[VAR
+	i							: INT;
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[// In stead of using an internal counter that could fail
+// run through the array of attached observers
+(* loop for first free position if not yet attached *)
+NoOfAttachedObservers := 0;
+FOR i := 1 TO MAXOBSERVERS DO
+	IF observers[i] <> 0 	THEN
+		NoOfAttachedObservers := NoOfAttachedObservers + 1;
+	END_IF
+END_FOR]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="notify" Id="{066cc371-6893-4a9d-a670-ce206a879997}">
+      <Declaration><![CDATA[METHOD notify : BOOL
+VAR
+	i			: INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[(* default *)
+notify := FALSE;
+
+(* loop if the subscriber is already registered *)
+FOR i := 1 TO MAXOBSERVERS DO
+	IF observers[i] <> 0 	THEN
+		observers[i].update();
+	END_IF
+END_FOR
+
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

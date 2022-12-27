@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{96af86c1-b717-4978-94fa-69f0fbb14ee1}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* 
+	GOF 		Encapsulate a request as an object, thereby letting you parameterize clients
+				with different requests, queue or log requests, and support undoable operations   
+*)
+P_Command();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

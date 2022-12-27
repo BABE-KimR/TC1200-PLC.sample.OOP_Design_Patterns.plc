@@ -12,44 +12,17 @@
 			</Tasks>
 		</System>
 		<Plc>
-			<Project GUID="{34B874B2-528C-4DE5-B664-8458F8BBF8C9}" Name="00_Strategy" PrjFilePath="00_Strategy\00_Strategy.plcproj" TmcFilePath="00_Strategy\00_Strategy.tmc" ReloadTmc="true" AmsPort="851" TargetArchiveSettings="#x0003" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{E9670ABF-B6D2-5A22-FD26-E0D7FF07063C}">
-					<Name>00_Strategy Instance</Name>
-					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
-					<Vars VarGrpType="1">
-						<Name>PlcTask Inputs</Name>
-						<Var>
-							<Name>P_Strategy.sensor1_1.rawValue</Name>
-							<Comment><![CDATA[ measurement value of sensor]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>P_Strategy.sensor1_2.rawValue</Name>
-							<Comment><![CDATA[ measurement value of sensor]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>P_Strategy.sensor2.rawValue</Name>
-							<Comment><![CDATA[ measurement value of sensor]]></Comment>
-							<Type>INT</Type>
-						</Var>
-					</Vars>
-					<Contexts>
-						<Context>
-							<Id NeedCalleeCall="true">0</Id>
-							<Name>PlcTask</Name>
-							<ManualConfig>
-								<OTCID>#x02010030</OTCID>
-							</ManualConfig>
-							<Priority>20</Priority>
-							<CycleTime>10000000</CycleTime>
-						</Context>
-					</Contexts>
-					<TaskPouOids>
-						<TaskPouOid Prio="20" OTCID="#x08502001"/>
-					</TaskPouOids>
-				</Instance>
-			</Project>
+			<Project File="13_Decorator.xti"/>
+			<Project File="20_ChainOfResponsibility.xti"/>
+			<Project File="21_Command.xti"/>
+			<Project File="26_Observer.xti"/>
+			<Project File="28_Strategy.xti"/>
+			<Project File="23_Iterator.xti"/>
+			<Project File="24_Mediator.xti"/>
+			<Project File="25_Memento.xti"/>
+			<Project File="27_State.xti"/>
+			<Project File="29_TemplateMethod.xti"/>
+			<Project File="30_Visitor.xti"/>
 		</Plc>
 	</Project>
 </TcSmProject>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="P_Command" Id="{df664cb1-9921-40c8-948f-0ee3d87a3c75}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_Command
+VAR
+	lightLivingRoom					: Light;
+	lightLivingRoomOnCommand		: OnCommand(OnCommand:=LightLivingRoom);
+	lightLivingRoomOffCommand		: OffCommand(OffCommand:=LightLivingRoom);
+
+	lightKitchen					: Light;
+	lightKitchenOnCommand			: OnCommand(OnCommand:=LightKitchen);
+	lightKitchenOffCommand			: OffCommand(OffCommand:=LightKitchen);
+
+	lightBathroom					: Light;
+	lightBathroomOnCommand			: OnCommand(OnCommand:=LightBathroom);
+	lightBathroomOffCommand			: OffCommand(OffCommand:=LightBathroom);
+
+	frontGate						: Gate;
+	frontGateOpenCommand			: OpenCommand(OpenCommand:=frontGate);
+	frontGateCloseCommand			: CloseCommand(CloseCommand:=frontGate);
+		
+	// TP10 (https://fixsus.be/hardware/tp10)
+	tp10MainHallway					: TP10;
+	
+	init							: BOOL := TRUE;// Initialization	
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF init THEN
+	// assign the commands to the TP10
+	tp10MainHallway.SetCommand(0, lightLivingRoomOnCommand);
+	tp10MainHallway.SetCommand(5, lightLivingRoomOffCommand);
+	tp10MainHallway.SetCommand(1, lightKitchenOnCommand);
+	tp10MainHallway.SetCommand(6, lightKitchenOffCommand);
+	tp10MainHallway.SetCommand(2, lightBathroomOnCommand);
+	tp10MainHallway.SetCommand(7, lightBathroomOffCommand);
+	tp10MainHallway.SetCommand(3, frontGateOpenCommand);
+	tp10MainHallway.SetCommand(8, frontGateCloseCommand);
+	init := FALSE;
+END_IF
+
+// The lights have no cyclic call since they just flip the output
+
+// The gate needs to be processed as long as it is not fully opened or closed after a command
+frontGate.CyclicCall();
+
+// Process the tp10's, could be an array of instances that is cyclically called
+tp10MainHallway.CyclicCall();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

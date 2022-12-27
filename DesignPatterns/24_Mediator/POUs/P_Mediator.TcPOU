@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="P_Mediator" Id="{d2846f60-a5b9-420e-9422-ce267f63bc31}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_Mediator
+VAR
+	fbChatWindow : FB_Mediator;
+	ChatWindow	 : I_Mediator := fbChatWindow;
+
+	fbUsers	     : ARRAY[1..Param.MAX_COLLEAGUES] OF FB_Colleague;
+	Users		 : ARRAY[1..Param.MAX_COLLEAGUES] OF I_Colleague;
+	
+	// Task and Demo Control
+	bStartDemo	: BOOL;
+	i			: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Assign Users 
+fbChatWindow(iColleague := Users);
+FOR i := 1 TO Param.MAX_COLLEAGUES DO
+	// Initialize Interface to Colleagues
+	Users[i] := fbUsers[i];
+	// Assign Mediator to Colleagues
+	fbUsers[i](iMediator := ChatWindow);
+END_FOR
+
+IF bStartDemo THEN
+	bStartDemo := FALSE;
+	Users[1].operation('Hi! How is everyone?');
+	Users[2].operation('Good good..');
+	Users[4].operation('Doing fine');
+	Users[5].operation('Yup! All is well');
+	Users[3].operation('I need a beer right about now');
+	Users[6].operation('Had a long day?');	
+	Users[3].operation('Yuuup, very long...');
+END_IF
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
