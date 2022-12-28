@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="P_Singleton" Id="{48ea9c0c-0f13-40e4-ac42-db79d7623fd1}" SpecialFunc="None">
+    <Declaration><![CDATA[(*
+	For now there seems not to be a possibility to create a real single singleton. 
+	The only solution found is the one by proxy, but that also means extra work since methods have to be written in the proxy.
+*)
+PROGRAM P_Singleton
+VAR
+	messageLogger				: MessageLogger;
+	messageLogger1				: MessageLogger;
+	messageLogger2				: MessageLogger;
+	myMessage					: STRING;
+	myMessage1					: STRING := 'Message 1';
+	myMessage2					: STRING := 'Message 2';
+	myMessage3					: STRING := 'Message 3';
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Log 'message 1' to the first messagelogger instance
+messageLogger.LogMessage(myMessage1);
+myMessage := messageLogger.message;
+
+// Log 'message 2' to a second messagelogger instance
+messageLogger1.LogMessage(myMessage2);
+myMessage := messageLogger.message;
+myMessage := messageLogger1.message;
+
+// Log 'message 3' to a third messagelogger instance
+messageLogger2.LogMessage(myMessage3);
+myMessage := messageLogger.message;
+myMessage := messageLogger2.message;
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

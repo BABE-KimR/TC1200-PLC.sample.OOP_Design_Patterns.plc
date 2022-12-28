@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="ICylinder" Id="{28f172c1-2d76-4e06-abc5-34a6dbe31c3a}">
+    <Declaration><![CDATA[INTERFACE ICylinder
+]]></Declaration>
+    <Method Name="bwd" Id="{c350baae-27bf-4c3b-98b2-9b40879fa866}">
+      <Declaration><![CDATA[METHOD bwd
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="fwd" Id="{34d629f9-237b-4b9e-9b98-7fa475259ce9}">
+      <Declaration><![CDATA[METHOD fwd
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

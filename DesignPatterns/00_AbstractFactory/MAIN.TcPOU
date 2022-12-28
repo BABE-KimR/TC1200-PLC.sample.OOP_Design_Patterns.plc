@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{a3eafa91-ed4b-4c56-85b3-699034de4110}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* 
+	GOF 		Provide an interface for creating families of related or dependent objects without
+				specifying their concrete classes.
+*)
+P_AbstractFactory();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

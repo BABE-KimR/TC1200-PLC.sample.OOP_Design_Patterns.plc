@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="P_Adapter" Id="{40cba971-86e8-4d4c-8cef-ebe86ac679f0}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_Adapter
+VAR
+	cylinderStandard				: Cylinder;
+	cylinderVtem					: CylinderVtem;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+// Move cylinders forward
+cylinderStandard.fwd();
+cylinderVtem.fwd();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

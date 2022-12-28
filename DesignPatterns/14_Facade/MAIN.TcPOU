@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{430d4257-d9e5-4a56-a587-39299104e6a2}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	axisControl					: MC_Axis;
+	resetEnable					: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* 
+	GOF 		Provide a unified interface to a set of interfaces in a subsystem. 
+				Facade defines a higher-level interface that makes the subsystem easier to use.
+*)
+axisControl.cyclicUpdate();
+IF resetEnable	THEN
+	resetEnable := NOT axisControl.resetEnable();
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

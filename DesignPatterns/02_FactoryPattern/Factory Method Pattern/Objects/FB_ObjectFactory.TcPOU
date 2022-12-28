@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_ObjectFactory" Id="{7868a833-1fe8-4b01-be7c-ca2942b13d41}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ObjectFactory
+VAR_INPUT
+	stObjectDef			: ST_ObjectDef;
+END_VAR
+VAR_IN_OUT
+	fbObject 			: FB_Object;	// reference to the actual object
+END_VAR
+VAR
+	pEmptyObject    	: POINTER TO FB_EmptyObject;
+	pDoor       		: POINTER TO FB_Door;
+	pCylinder   		: POINTER TO FB_Cylinder;
+	pMotor       		: POINTER TO FB_Motor;			
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+// release pointer if existing
+IF fbObject.ipObject <> 0 THEN
+	IF stObjectDef.bReleaseIfExists	THEN
+		// DONKEY First release before proceeding
+		Destruct(fbObject); 
+	ELSE
+		// only proceed if there isn't already a pointer in ipObject
+		RETURN;
+	END_IF
+END_IF
+
+// return an instance reference to the requested object type 
+CASE stObjectDef.eObjectType			OF
+	
+	E_OBJECTS.UNDEFINED:
+		// create a pointer to the object to be instantiated				
+		pEmptyObject  		:= __NEW(FB_EmptyObject(
+								sObjectID		:=stObjectDef.sObjectID, 
+								eObjectType		:=stObjectDef.eObjectType)
+								);
+		pEmptyObject^.pInstance := pEmptyObject; 	// store pointer for destructor						
+		fbObject.ipObject	:= pEmptyObject^;		// reference pointer to the real FB
+		
+	E_OBJECTS.CYLINDER:
+		pCylinder  			:= __NEW(FB_Cylinder(
+								sObjectID		:=stObjectDef.sObjectID, 
+								eObjectType		:=stObjectDef.eObjectType)
+								);
+		pCylinder^.pInstance := pCylinder; 							
+		fbObject.ipObject	:= pCylinder^;
+	
+	E_OBJECTS.DOOR:
+		pDoor	  			:= __NEW(FB_Door(
+								sObjectID		:=stObjectDef.sObjectID, 
+								eObjectType		:=stObjectDef.eObjectType)
+								);
+		pDoor^.pInstance	:= pDoor;
+		fbObject.ipObject	:= pDoor^;
+		
+	E_OBJECTS.MOTOR:
+		pMotor  			:= __NEW(FB_Motor(
+								sObjectID		:=stObjectDef.sObjectID, 
+								eObjectType		:=stObjectDef.eObjectType)
+								);
+		pMotor^.pInstance	:= pMotor;
+		fbObject.ipObject	:= pMotor^;
+		
+	ELSE
+		pEmptyObject  		:= __NEW(FB_EmptyObject(
+								sObjectID		:='INVALID TYPE', 
+								eObjectType		:=E_Objects.UNDEFINED)
+								);
+		pEmptyObject^.pInstance := pEmptyObject;						
+		fbObject.ipObject	:= pEmptyObject^;
+	
+END_CASE]]></ST>
+    </Implementation>
+    <Method Name="Destruct" Id="{b73e8d02-f441-4a6e-ab3e-c0a569222423}">
+      <Declaration><![CDATA[METHOD Destruct : BOOL
+VAR_INPUT
+	fbObject		: FB_Object;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fbObject.Destruct();
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

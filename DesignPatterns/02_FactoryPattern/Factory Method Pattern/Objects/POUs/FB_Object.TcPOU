@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_Object" Id="{630e43f6-dabf-46f7-9bf3-2d4a36c97869}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Object IMPLEMENTS I_Object
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	_ipObject 			: I_Object := 0;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Destruct" Id="{de441e1b-6ff0-4559-b14e-30118cac3714}">
+      <Declaration><![CDATA[METHOD Destruct : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// object destructor
+IF (_ipObject <> 0) THEN
+	_ipObject.Destruct();
+	_ipObject := 16#0;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="ipObject" Id="{168e2159-3eaa-4ebc-a520-7638afede6c1}">
+      <Declaration><![CDATA[PROPERTY ipObject : I_Object]]></Declaration>
+      <Get Name="Get" Id="{f85965ae-377d-47df-896d-df9934ec4ce9}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ipObject := this^._ipObject;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{1b05c7f8-147d-4f4a-8f9a-9b12fef8b868}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IF (ipObject<>0) THEN
+	THIS^._ipObject := ipObject;
+ELSE
+	THIS^._ipObject := 0;
+END_IF
+]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="M_GetObjectDescription" Id="{e6aa9a81-1045-4f48-bbfe-5b0657fccc0b}">
+      <Declaration><![CDATA[METHOD M_GetObjectDescription : STRING
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[M_GetObjectDescription := 'Error';
+IF (_ipObject <> 0) THEN
+	M_GetObjectDescription := _ipObject.M_GetObjectDescription();
+END_IF	
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Reset" Id="{69f84b58-a728-441f-89f7-b0d4aaefd84f}">
+      <Declaration><![CDATA[{warning 'add method implementation'}
+METHOD M_Reset : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Start" Id="{3101429e-36b4-41b5-8a3c-8f509a015f33}">
+      <Declaration><![CDATA[{warning 'add method implementation'}
+METHOD M_Start : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="P_Status" Id="{0a05751c-5b08-4f3e-8cc2-7eb12d7f6de2}">
+      <Declaration><![CDATA[{warning 'add property implementation'}
+PROPERTY P_Status : DWORD
+]]></Declaration>
+      <Get Name="Get" Id="{a37098e4-8122-444e-a5d2-398549f50b43}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

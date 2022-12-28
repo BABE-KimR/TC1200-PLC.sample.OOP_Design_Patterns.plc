@@ -11,6 +11,9 @@
 				</Task>
 			</Tasks>
 		</System>
+		<Motion>
+			<NC File="NC.xti"/>
+		</Motion>
 		<Plc>
 			<Project File="13_Decorator.xti"/>
 			<Project File="20_ChainOfResponsibility.xti"/>
@@ -23,6 +26,14 @@
 			<Project File="27_State.xti"/>
 			<Project File="29_TemplateMethod.xti"/>
 			<Project File="30_Visitor.xti"/>
+			<Project File="16_Proxy.xti"/>
+			<Project File="04_SingletonByProxy.xti"/>
+			<Project File="01_Builder.xti"/>
+			<Project File="00_AbstractFactory.xti"/>
+			<Project File="100_PatternsOfLadderLogicProgramming.xti"/>
+			<Project File="02_FactoryPattern.xti"/>
+			<Project File="10_Adapter.xti"/>
+			<Project File="14_Facade.xti"/>
 		</Plc>
 	</Project>
 </TcSmProject>

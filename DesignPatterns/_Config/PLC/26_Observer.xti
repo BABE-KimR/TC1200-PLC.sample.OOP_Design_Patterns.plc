@@ -1,15 +1,23 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.35" ClassName="CNestedPlcProjDef">
-	<Project GUID="{9FA23D6C-B136-4641-8D4B-D8F98A41B607}" Name="26_Observer" PrjFilePath="..\..\26_Observer\26_Observer.plcproj" TmcFilePath="..\..\26_Observer\26_Observer.tmc" ReloadTmc="true" AmsPort="854" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x085020c0" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2">
+	<Project GUID="{9FA23D6C-B136-4641-8D4B-D8F98A41B607}" Name="26_Observer" PrjFilePath="..\..\26_Observer\26_Observer.plcproj" TmcFilePath="..\..\26_Observer\26_Observer.tmc" ReloadTmc="true" AmsPort="854" TargetArchiveSettings="#x0000" FileArchiveSettings="#x0002" SymbolicMapping="true">
+		<Instance Id="#x085020c0" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="26_Observer\26_Observer.tmc" TmcHash="{93F69A15-6201-5416-B2D5-4331977395CF}">
 			<Name>26_Observer Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Contexts>
 				<Context>
-					<Id>1</Id>
-					<Name>Default</Name>
+					<Id NeedCalleeCall="true">0</Id>
+					<Name>PlcTask</Name>
+					<ManualConfig>
+						<OTCID>#x02010030</OTCID>
+					</ManualConfig>
+					<Priority>20</Priority>
+					<CycleTime>10000000</CycleTime>
 				</Context>
 			</Contexts>
+			<TaskPouOids>
+				<TaskPouOid Prio="20" OTCID="#x085020c1"/>
+			</TaskPouOids>
 		</Instance>
 	</Project>
 </TcSmItem>

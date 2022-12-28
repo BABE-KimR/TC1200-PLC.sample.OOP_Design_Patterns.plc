@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{943b8dd8-8cec-4e6a-b705-026f7d031610}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* 
+	GOF 		Ensure a class only has one instance, and provide a global point of access to it.
+*)
+P_Singleton();
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

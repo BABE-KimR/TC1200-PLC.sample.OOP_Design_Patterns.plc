@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{15e1695a-aab8-4b4f-8888-3359ef891a42}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* 
+	GOF 		Separate the construction of a complex object from its representation so that
+				the same construction process can create different representations.
+*)
+P_Builder();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MC_Axis" Id="{158863d8-3dca-0841-1611-39886e3ca706}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK MC_Axis
+(* PLCopen motion control statemachine states: 
+   https://infosys.beckhoff.com/english.php?content=../content/1033/tcplclib_tc2_mc2/70041995.html&id=6831501888106392354
+	   MCSTATE_UNDEFINED,
+	   MCSTATE_DISABLED,
+	   MCSTATE_STANDSTILL,
+	   MCSTATE_ERRORSTOP,
+	   MCSTATE_STOPPING,
+	   MCSTATE_HOMING,
+	   MCSTATE_DISCRETEMOTION,
+	   MCSTATE_CONTINOUSMOTION,
+	   MCSTATE_SYNCHRONIZEDMOTION
+*)
+VAR	
+	_axis					: axis_ref;		
+
+	// MC_Power
+	mcPower					: MC_Power;
+	mcReset					: MC_Reset;
+	mcHalt					: MC_Halt;
+	
+	// Internals
+	state					: INT;
+	toggle					: BYTE;	
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//*********************************************************
+// Code implementation only in CyclicUpdate() method for consistency with templates
+// enables the use of the interface
+// but calling this base method can be used to pass IN_OUTs to the instance
+// without calling any code in the instance
+//*********************************************************
+cyclicUpdate();]]></ST>
+    </Implementation>
+    <Method Name="abort" Id="{31621926-27bd-0d63-09b7-327f60f34a4a}">
+      <Declaration><![CDATA[// Let's (mis-)use the default MC2 Motion states
+// When using the MC2 defined states, the method cannot lock up the _axis block
+// There is always a defined state that can be used by the other methods
+(* https://infosys.beckhoff.com/english.php?content=../content/1033/tcplclib_tc2_mc2/70041995.html&id=6831501888106392354
+   MC__axisSTATE_UNDEFINED,
+   MC__axisSTATE_DISABLED,
+   MC__axisSTATE_STANDSTILL,
+   MC__axisSTATE_ERRORSTOP,
+   MC__axisSTATE_STOPPING,
+   MC__axisSTATE_HOMING,
+   MC__axisSTATE_DISCRETEMOTION,
+   MC__axisSTATE_CONTINOUSMOTION,
+   MC__axisSTATE_SYNCHRONIZEDMOTION
+*)
+METHOD abort				: BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// 
+abort:=FALSE;
+
+// Trigger the abort message
+//M_sendRegisteredMessageWithPathAndArg(rT.Q AND _Log, sDevName, TC_EVENTS.EventClass__axis.msg_axis_Aborting, _axis.NcToPlc._axisId); 
+mcPower.Enable						:= FALSE;
+
+// Act depending on the motion state
+CASE _axis.Status.MotionState OF
+	MC_axisSTATE_UNDEFINED:				// Let's hope not ;)
+		abort:=FALSE;					// No defined path here
+			
+	MC_axisSTATE_DISABLED:				// The desired end state
+		abort:=TRUE;
+		
+	MC_axisSTATE_STANDSTILL:			// _axis is stopped, now disable it
+		mcPower.Enable				:= FALSE;
+		mcPower.Enable_Negative		:= FALSE;
+		mcPower.Enable_Positive		:= FALSE;
+		abort						:= FALSE;
+		
+	MC_axisSTATE_ERRORSTOP:				// Faulty end state, but it is an end state
+		mcPower.Enable				:= FALSE;
+		mcPower.Enable_Negative		:= FALSE;
+		mcPower.Enable_Positive		:= FALSE;		
+		abort						:= TRUE;
+		
+	MC_axisSTATE_STOPPING:				// intermediate state, nothing to do here
+		mcPower.Enable				:= FALSE;
+		mcPower.Enable_Negative		:= FALSE;
+		mcPower.Enable_Positive		:= FALSE;
+		abort						:= FALSE;
+	
+	// The _axis is still moving, first stop it
+	MC_axisSTATE_HOMING,
+	MC_axisSTATE_DISCRETEMOTION,
+	MC_axisSTATE_CONTINOUSMOTION,
+	MC_axisSTATE_SYNCHRONIZEDMOTION:
+		mcPower.Enable				:= FALSE;
+		mcPower.Enable_Negative		:= FALSE;
+		mcPower.Enable_Positive		:= FALSE;
+		abort						:= FALSE;
+			
+END_CASE
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="axis" Id="{bd473fe3-4722-4c36-b9f3-31130743942a}">
+      <Declaration><![CDATA[PROPERTY PUBLIC axis : reference to axis_ref]]></Declaration>
+      <Get Name="Get" Id="{5bde7e31-b39d-4269-ad25-9aafe9b3a7d0}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[axis ref= _axis;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="cyclicUpdate" Id="{36f04210-41d5-07b3-0409-72c6a70a943c}">
+      <Declaration><![CDATA[METHOD cyclicUpdate
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[toggle	:= toggle + 1;
+
+// Fetch _axis statusses
+axis.ReadStatus();
+
+// A_axiscontrol blocks
+mcPower(
+	axis			:= _axis, 
+	Override			:= 100.0
+	);
+mcReset(axis:= _axis);
+mcHalt(axis:= _axis);	
+	
+// Reset signals to function blocks, they will be re-set by the methods if necessary
+mcHalt.Execute			:= FALSE;
+mcReset.Execute			:= FALSE;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="reset" Id="{27d66a5d-a815-059a-1fe1-74e75fde3826}">
+      <Declaration><![CDATA[METHOD reset		: BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// 
+reset							:= FALSE;
+mcHalt.Execute					:= FALSE;
+
+// Act depending on the motion state
+CASE _Axis.Status.MotionState OF
+	MC_AXISSTATE_UNDEFINED:				// Let's hope not ;)
+		reset:=FALSE;					// No defined path here
+		
+	MC_AXISSTATE_DISABLED,
+	MC_AXISSTATE_STANDSTILL,			// The desired end state
+	MC_AXISSTATE_SYNCHRONIZEDMOTION,
+	MC_AXISSTATE_STOPPING,				
+	MC_AXISSTATE_HOMING,
+	MC_AXISSTATE_DISCRETEMOTION,
+	MC_AXISSTATE_CONTINOUSMOTION:
+		// DONKEY , TEMP HASJOB SOLUTION FOR KINEMATICS	
+		IF _axis.Status.HasJob	OR _axis.Status.error 	THEN	// Try again, but leave the axis enabled
+			mcReset.Execute		:= NOT mcReset.Execute AND toggle.3;
+		ELSE
+			reset:=TRUE;			// No defined path here
+			mcReset.Execute			:= FALSE;
+		END_IF
+	
+	MC_AXISSTATE_ERRORSTOP:				// Reset is necessary
+		mcPower.Enable		:= FALSE;
+		mcReset.Execute		:= NOT mcReset.Execute AND toggle.3;
+		
+END_CASE
+
+// Reset OK
+reset := NOT _axis.Status.Error AND NOT _axis.Status.HasJob;		// DONKEY , TEMP HASJOB SOLUTION FOR KINEMATICS
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="resetEnable" Id="{fc4eccb5-8266-0b12-1325-171124d66af2}">
+      <Declaration><![CDATA[METHOD resetEnable		: BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// 
+resetEnable					:= FALSE;
+mcHalt.Execute					:= FALSE;
+
+// Act depending on the motion state
+CASE _Axis.Status.MotionState OF
+	MC_AXISSTATE_UNDEFINED:				// Let's hope not ;)
+		resetEnable:=FALSE;					// No defined path here
+		
+	MC_AXISSTATE_DISABLED:				// Once the axis is disabled, start re-enabling it
+		// Possibly transition from MC_AXISSTATE_ERRORSTOP
+		// Pass parameters to Motion function
+		mcPower.Enable			:= TRUE; 
+		mcPower.Enable_Positive	:= TRUE; 
+		mcPower.Enable_Negative	:= TRUE; 
+		IF mcPower.Error		OR _axis.Status.error 	THEN		// try again 
+			mcReset.Execute		:= NOT mcReset.Execute AND toggle.3;
+			mcPower.Enable		:= FALSE; 
+		END_IF
+				
+	MC_AXISSTATE_STANDSTILL,			// The desired end state
+	MC_AXISSTATE_SYNCHRONIZEDMOTION:
+		;
+	
+	MC_AXISSTATE_ERRORSTOP:				// Reset is necessary
+		mcPower.Enable		:= FALSE;
+		mcReset.Execute		:= NOT mcReset.Execute AND toggle.3;
+
+	// Other states are to be ignored, disable all commands here			
+	MC_AXISSTATE_STOPPING,				
+	MC_AXISSTATE_HOMING,
+	MC_AXISSTATE_DISCRETEMOTION,
+	MC_AXISSTATE_CONTINOUSMOTION:
+		// DONKEY , TEMP HASJOB SOLUTION FOR KINEMATICS	
+		IF _axis.Status.HasJob	OR _axis.Status.error 	THEN	// Try again, but leave the axis enabled
+			mcReset.Execute		:= NOT mcReset.Execute AND toggle.3;
+		ELSE
+			mcReset.Execute			:= FALSE;
+		END_IF
+		mcHalt.Execute				:= FALSE;
+		
+END_CASE
+
+// Reset OK
+resetEnable := mcPower.Status AND NOT _axis.Status.HasJob;		// DONKEY , TEMP HASJOB SOLUTION FOR KINEMATICS
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="stateCurrent" Id="{8463a175-320e-0127-0414-64e4027af9bc}">
+      <Declaration><![CDATA[PROPERTY stateCurrent : MC_AxisStates
+]]></Declaration>
+      <Get Name="Get" Id="{12240aba-2531-00ff-34a0-10ea3371cc93}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[StateCurrent := _axis.Status.MotionState;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="stop" Id="{0be888cb-3931-06dd-3881-3e6a417bb967}">
+      <Declaration><![CDATA[// Let's (mis-)use the default MC2 Motion states
+// When using the MC2 defined states, the method cannot lock up the axis block
+// There is always a defined state that can be used by the other methods
+(* https://infosys.beckhoff.com/english.php?content=../content/1033/tcplclib_tc2_mc2/70041995.html&id=6831501888106392354
+   MC_AXISSTATE_UNDEFINED,
+   MC_AXISSTATE_DISABLED,
+   MC_AXISSTATE_STANDSTILL,
+   MC_AXISSTATE_ERRORSTOP,
+   MC_AXISSTATE_STOPPING,
+   MC_AXISSTATE_HOMING,
+   MC_AXISSTATE_DISCRETEMOTION,
+   MC_AXISSTATE_CONTINOUSMOTION,
+   MC_AXISSTATE_SYNCHRONIZEDMOTION
+*)
+METHOD stop				: BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// 
+stop:=FALSE;
+
+// Act depending on the motion state
+CASE _Axis.Status.MotionState OF
+	MC_AXISSTATE_UNDEFINED:				// Let's hope not ;)
+		stop:=FALSE;					// No defined path here
+					
+	MC_AXISSTATE_STANDSTILL,			// Axis is stopped, correct end state
+	MC_AXISSTATE_DISABLED,				// Faulty end state, but it is an end state
+	MC_AXISSTATE_ERRORSTOP:				// Faulty end state, but it is an end state
+		mcHalt.Execute				:= FALSE;
+		mcPower.Enable				:= FALSE;
+		stop						:= TRUE;
+
+	MC_AXISSTATE_STOPPING:				// intermediate state, nothing to do here
+		stop						:= FALSE;
+		
+	// The axis is still moving, first stop it
+	MC_AXISSTATE_HOMING,
+	MC_AXISSTATE_DISCRETEMOTION,
+	MC_AXISSTATE_CONTINOUSMOTION,
+	MC_AXISSTATE_SYNCHRONIZEDMOTION:
+		mcHalt.Execute				:= NOT mcHalt.Execute;	// Start to stop
+		stop						:= FALSE;
+					
+END_CASE
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

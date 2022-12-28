@@ -1,15 +1,72 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.35" ClassName="CNestedPlcProjDef">
-	<Project GUID="{105CAD6F-2D95-4800-9C4F-C8A2E2EF2F8A}" Name="21_Command" PrjFilePath="..\..\21_Command\21_Command.plcproj" TmcFilePath="..\..\21_Command\21_Command.tmc" ReloadTmc="true" AmsPort="853" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502080" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2">
+	<DataTypes>
+		<DataType>
+			<Name GUID="{8993EA93-CD58-786C-177B-BF571BCDFBE6}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..9] OF BOOL</Name>
+			<BitSize>80</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>10</Elements>
+			</ArrayInfo>
+		</DataType>
+	</DataTypes>
+	<Project GUID="{105CAD6F-2D95-4800-9C4F-C8A2E2EF2F8A}" Name="21_Command" PrjFilePath="..\..\21_Command\21_Command.plcproj" TmcFilePath="..\..\21_Command\21_Command.tmc" ReloadTmc="true" AmsPort="853" TargetArchiveSettings="#x0000" FileArchiveSettings="#x0002" SymbolicMapping="true">
+		<Instance Id="#x08502080" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="21_Command\21_Command.tmc" TmcHash="{524E9AE3-B33B-7AFB-B3C2-9E416D909C8E}">
 			<Name>21_Command Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+			<Vars VarGrpType="1">
+				<Name>PlcTask Inputs</Name>
+				<Var>
+					<Name>P_Command.frontGate.gateIsOpen</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>P_Command.frontGate.gateIsClosed</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>P_Command.tp10MainHallway.buttons</Name>
+					<Type GUID="{8993EA93-CD58-786C-177B-BF571BCDFBE6}">ARRAY [0..9] OF BOOL</Type>
+				</Var>
+			</Vars>
+			<Vars VarGrpType="2" AreaNo="1">
+				<Name>PlcTask Outputs</Name>
+				<Var>
+					<Name>P_Command.lightLivingRoom.light</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>P_Command.lightKitchen.light</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>P_Command.lightBathroom.light</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>P_Command.frontGate.openGate</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>P_Command.frontGate.closeGate</Name>
+					<Type>BOOL</Type>
+				</Var>
+			</Vars>
 			<Contexts>
 				<Context>
-					<Id>1</Id>
-					<Name>Default</Name>
+					<Id NeedCalleeCall="true">0</Id>
+					<Name>PlcTask</Name>
+					<ManualConfig>
+						<OTCID>#x02010030</OTCID>
+					</ManualConfig>
+					<Priority>20</Priority>
+					<CycleTime>10000000</CycleTime>
 				</Context>
 			</Contexts>
+			<TaskPouOids>
+				<TaskPouOid Prio="20" OTCID="#x08502081"/>
+			</TaskPouOids>
 		</Instance>
 	</Project>
 </TcSmItem>

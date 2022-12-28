@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Cylinder" Id="{bc59d3bc-be40-4414-9339-2d408c7d5472}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Cylinder IMPLEMENTS ICylinder
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="bwd" Id="{7c9260b8-a926-4a28-81bb-fc0c897f9b1e}">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD bwd
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="fwd" Id="{5c39f43c-1f26-482b-8b91-af06775dee77}">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD fwd
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

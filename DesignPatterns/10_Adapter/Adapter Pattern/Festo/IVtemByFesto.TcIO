@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="IVtemByFesto" Id="{c671ce13-b39c-446e-a6e3-c4670dc09ad1}">
+    <Declaration><![CDATA[INTERFACE IVtemByFesto
+]]></Declaration>
+    <Method Name="moveBwd" Id="{dc1cb979-4985-4f25-8434-a885560df841}">
+      <Declaration><![CDATA[METHOD moveBwd : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="moveFwd" Id="{4d09c024-2fdf-4efc-995c-96559d768b1e}">
+      <Declaration><![CDATA[METHOD moveFwd : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

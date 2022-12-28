@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{6e8820fe-31af-42d3-aaba-8e3a2c8f10cb}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* 
+	GOF 		Define an interface for creating an object, but let subclasses decide which class
+				to instantiate. Factory Method lets a class defer instantiation to subclasses.
+*)
+P_FactoryPattern();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

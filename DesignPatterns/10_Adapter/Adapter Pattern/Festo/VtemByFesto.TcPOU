@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="VtemByFesto" Id="{f2bacbc6-71c7-4125-975b-16161189411d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK VtemByFesto IMPLEMENTS IVtemByFesto
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="moveBwd" Id="{21c66ff4-3206-4dd9-b1f6-0086ce5365bf}">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD moveBwd : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="moveFwd" Id="{0a187a55-4e5a-4e75-8951-1b9f2bb9e0ad}">
+      <Declaration><![CDATA[{warning 'add method implementation '}
+METHOD moveFwd : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

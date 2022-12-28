@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.35" ClassName="CNestedPlcProjDef">
+	<Project GUID="{88E4AB47-232A-40BA-A6D7-EB8E940EF7DE}" Name="01_Builder" PrjFilePath="..\..\01_Builder\01_Builder.plcproj" TmcFilePath="..\..\01_Builder\01_Builder.tmc" ReloadTmc="true" AmsPort="864" TargetArchiveSettings="#x0000" FileArchiveSettings="#x0002" SymbolicMapping="true">
+		<Instance Id="#x08502340" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{6BFC41B9-0F04-68C5-E005-B417743DB70B}">
+			<Name>01_Builder Instance</Name>
+			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+			<Contexts>
+				<Context>
+					<Id NeedCalleeCall="true">0</Id>
+					<Name>PlcTask</Name>
+					<ManualConfig>
+						<OTCID>#x02010030</OTCID>
+					</ManualConfig>
+					<Priority>20</Priority>
+					<CycleTime>10000000</CycleTime>
+				</Context>
+			</Contexts>
+			<TaskPouOids>
+				<TaskPouOid Prio="20" OTCID="#x08502341"/>
+			</TaskPouOids>
+		</Instance>
+	</Project>
+</TcSmItem>

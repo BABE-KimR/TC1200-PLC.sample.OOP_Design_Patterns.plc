@@ -1,15 +1,41 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.35" ClassName="CNestedPlcProjDef">
-	<Project GUID="{34B874B2-528C-4DE5-B664-8458F8BBF8C9}" Name="28_Strategy" PrjFilePath="..\..\28_Strategy\28_Strategy.plcproj" TmcFilePath="..\..\28_Strategy\28_Strategy.tmc" ReloadTmc="true" AmsPort="855" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502100" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2">
+	<Project GUID="{34B874B2-528C-4DE5-B664-8458F8BBF8C9}" Name="28_Strategy" PrjFilePath="..\..\28_Strategy\28_Strategy.plcproj" TmcFilePath="..\..\28_Strategy\28_Strategy.tmc" ReloadTmc="true" AmsPort="855" TargetArchiveSettings="#x0000" FileArchiveSettings="#x0002" SymbolicMapping="true">
+		<Instance Id="#x08502100" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="28_Strategy\28_Strategy.tmc" TmcHash="{2F0B1DA4-B3E5-B7F0-1D10-DBEF90142B0F}">
 			<Name>28_Strategy Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+			<Vars VarGrpType="1">
+				<Name>PlcTask Inputs</Name>
+				<Var>
+					<Name>P_Strategy.sensor1_1.rawValue</Name>
+					<Comment><![CDATA[ measurement value of sensor]]></Comment>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>P_Strategy.sensor1_2.rawValue</Name>
+					<Comment><![CDATA[ measurement value of sensor]]></Comment>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>P_Strategy.sensor2.rawValue</Name>
+					<Comment><![CDATA[ measurement value of sensor]]></Comment>
+					<Type>INT</Type>
+				</Var>
+			</Vars>
 			<Contexts>
 				<Context>
-					<Id>1</Id>
-					<Name>Default</Name>
+					<Id NeedCalleeCall="true">0</Id>
+					<Name>PlcTask</Name>
+					<ManualConfig>
+						<OTCID>#x02010030</OTCID>
+					</ManualConfig>
+					<Priority>20</Priority>
+					<CycleTime>10000000</CycleTime>
 				</Context>
 			</Contexts>
+			<TaskPouOids>
+				<TaskPouOid Prio="20" OTCID="#x08502101"/>
+			</TaskPouOids>
 		</Instance>
 	</Project>
 </TcSmItem>
