@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Component" Id="{c9af56f0-8ee3-4ea4-a4e9-a3e6db04f829}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Component EXTENDS Composite
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="logStatus" Id="{f22a363c-34c3-47a9-bc12-f1fe4d1b2d58}">
+      <Declaration><![CDATA[METHOD logStatus
+VAR
+	sMessage				: STRING;		
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Local status 
+SUPER^.logStatus();
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

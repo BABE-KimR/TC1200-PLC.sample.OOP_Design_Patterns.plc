@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.35" ClassName="CNestedPlcProjDef">
-	<Project GUID="{4EB797FE-61E1-4BE6-AA5E-A5F244FD83B5}" Name="16_Proxy" PrjFilePath="..\..\16_Proxy\16_Proxy.plcproj" TmcFilePath="..\..\16_Proxy\16_Proxy.tmc" ReloadTmc="true" AmsPort="862" TargetArchiveSettings="#x0000" FileArchiveSettings="#x0002" SymbolicMapping="true">
-		<Instance Id="#x085022c0" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="16_Proxy\16_Proxy.tmc" TmcHash="{F8FC0F66-2F7B-09AA-A08D-08B2BF0C51B3}">
-			<Name>16_Proxy Instance</Name>
+	<Project GUID="{5EC6D87D-EF7A-414C-9098-A74A9225A533}" Name="12_Composite" PrjFilePath="..\..\12_Composite\12_Composite.plcproj" TmcFilePath="..\..\12_Composite\12_Composite.tmc" ReloadTmc="true" AmsPort="870" TargetArchiveSettings="#x0000" FileArchiveSettings="#x0002" SymbolicMapping="true">
+		<Instance Id="#x085024c0" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{C442136B-B710-9348-6046-5489EF42C4FE}">
+			<Name>12_Composite Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Contexts>
 				<Context>
@@ -16,7 +16,7 @@
 				</Context>
 			</Contexts>
 			<TaskPouOids>
-				<TaskPouOid Prio="20" OTCID="#x085022c1"/>
+				<TaskPouOid Prio="20" OTCID="#x085024c1"/>
 			</TaskPouOids>
 		</Instance>
 	</Project>

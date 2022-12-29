@@ -983,7 +983,7 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<Project GUID="{538E8D6D-4DCF-4A46-A75E-8B82C7D8AC28}" Name="14_Facade" PrjFilePath="..\..\14_Facade\14_Facade.plcproj" TmcFilePath="..\..\14_Facade\14_Facade.tmc" ReloadTmc="true" AmsPort="869" TargetArchiveSettings="#x0000" FileArchiveSettings="#x0002" SymbolicMapping="true">
-		<Instance Id="#x08502480" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{351399AD-4182-079B-30F4-42924F7A8A67}">
+		<Instance Id="#x08502480" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="14_Facade\14_Facade.tmc" TmcHash="{7C110D01-E4E9-8261-B3A5-08FB95B067AD}">
 			<Name>14_Facade Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">

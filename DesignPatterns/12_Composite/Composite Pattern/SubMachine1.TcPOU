@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="SubMachine1" Id="{044941f2-77fc-4748-bb6d-b1df11350035}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK SubMachine1 extends Composite
+VAR
+	component1					: Component;
+	component2					: Component;
+	childs						: ARRAY[1..NOOFCHILDS] OF IComposite := [component1,component2]; 
+END_VAR
+VAR CONSTANT
+	NOOFCHILDS					: INT := 2;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="logStatus" Id="{0438e7e8-ebfe-4cbc-8d52-20be17ea6aed}">
+      <Declaration><![CDATA[METHOD logStatus
+VAR
+	sMessage				: STRING;		
+	i						: DINT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Local status 
+SUPER^.logStatus();
+
+// Loop through childs
+FOR i := 1 TO NOOFCHILDS DO
+	IF childs[i]<>0 THEN
+		childs[i].logStatus();
+	END_IF
+END_FOR
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

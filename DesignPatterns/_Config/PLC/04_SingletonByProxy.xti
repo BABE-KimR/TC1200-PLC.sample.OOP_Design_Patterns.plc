@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.35" ClassName="CNestedPlcProjDef">
 	<Project GUID="{6E123637-6CF1-41B7-AB2D-41916E3C3418}" Name="04_SingletonByProxy" PrjFilePath="..\..\04_SingletonByProxy\04_SingletonByProxy.plcproj" TmcFilePath="..\..\04_SingletonByProxy\04_SingletonByProxy.tmc" ReloadTmc="true" AmsPort="863" TargetArchiveSettings="#x0000" FileArchiveSettings="#x0002" SymbolicMapping="true">
-		<Instance Id="#x08502300" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{C7205CC3-BA79-CF85-61A5-C117DC5B4657}">
+		<Instance Id="#x08502300" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="04_SingletonByProxy\04_SingletonByProxy.tmc" TmcHash="{A58E15A4-53B4-FD1F-BDB3-2C558B57317E}">
 			<Name>04_SingletonByProxy Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Contexts>

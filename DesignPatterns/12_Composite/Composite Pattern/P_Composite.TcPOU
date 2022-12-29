@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="P_Composite" Id="{42d147bc-3014-4419-b605-5661dbab23e6}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_Composite
+VAR
+	machine01				: Machine;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[machine01.logStatus();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

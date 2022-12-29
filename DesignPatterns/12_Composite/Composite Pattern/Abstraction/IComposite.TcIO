@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="IComposite" Id="{0b4d55fa-3312-4677-ba01-e06d13b72407}">
+    <Declaration><![CDATA[INTERFACE IComposite
+]]></Declaration>
+    <Method Name="getChild" Id="{d2567449-1540-4754-bcc8-d873aac9d8e6}">
+      <Declaration><![CDATA[METHOD getChild : IComposite
+VAR_INPUT
+	child				: INT;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="getName" Id="{e0b55806-251f-49b6-8404-250acfb7f7d8}">
+      <Declaration><![CDATA[METHOD getName : T_MAXSTRING
+]]></Declaration>
+    </Method>
+    <Method Name="getStatus" Id="{02331e30-138b-43b9-b226-03bfb8451c98}">
+      <Declaration><![CDATA[METHOD getStatus : E_Status
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="logStatus" Id="{f9e5a63b-f270-4c5e-8e3e-cb29ac7c9e70}">
+      <Declaration><![CDATA[METHOD logStatus
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

@@ -34,6 +34,11 @@
 			<Project File="02_FactoryPattern.xti"/>
 			<Project File="10_Adapter.xti"/>
 			<Project File="14_Facade.xti"/>
+			<Project File="12_Composite.xti"/>
 		</Plc>
+		<Io/>
 	</Project>
+	<Mappings>
+		<MappingInfo Identifier="{05000010-2481-0850-1000-040380245008}" Id="#x02030010" Watchdog="14000000040000000400000004000000"/>
+	</Mappings>
 </TcSmProject>

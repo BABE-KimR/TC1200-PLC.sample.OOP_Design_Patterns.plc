@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{29abbce7-c4e9-4398-9403-4d1c70eab13f}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* 
+	GOF 		Provide a unified interface to a set of interfaces in a subsystem. 
+				Facade defines a higher-level interface that makes the subsystem easier to use.
+*)
+P_Composite();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Composite" Id="{1fc870e8-3c77-49a4-a269-d821070471ff}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'reflection'}
+FUNCTION_BLOCK ABSTRACT Composite IMPLEMENTS IComposite
+VAR
+	{attribute 'instance-path'}
+	{attribute 'noinit'}
+	instancePath			: STRING;	
+	
+	// Local status
+	_status					: E_Status;	
+	_statusPrev				: E_Status := 666; 
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="getChild" Id="{df28c1f2-2e81-4fee-b5f0-3666739d0610}">
+      <Declaration><![CDATA[METHOD getChild : IComposite
+VAR_INPUT
+	child	: INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// default implementation, return empty
+getChild := 0;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="getName" Id="{8c7b758f-50d7-4241-b27c-b9766ea3fc4a}">
+      <Declaration><![CDATA[METHOD getName : Tc2_System.T_MaxString
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// default implementation, return empty string
+getName := instancePath;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="getStatus" Id="{9c6abd87-f562-4417-819a-06641af749c5}">
+      <Declaration><![CDATA[METHOD getStatus : E_Status
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// default implementation, return status unknown
+getStatus := _status;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="logStatus" Id="{3b11bae2-de86-4ef9-8b38-f07aabbbdbb6}">
+      <Declaration><![CDATA[METHOD logStatus
+VAR
+	sMessage				: STRING;		
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// default implementation, do nothing
+IF (_statusPrev <> _status)	THEN
+	sMessage := concat(concat(instancePath, ': '), TO_STRING(_status));
+	adsLogStr(	msgCtrlMask		:= ADSLOG_MSGTYPE_LOG,
+			msgFmtStr 		:= '%s',
+			strArg			:= sMessage 
+			);	
+	_statusPrev := _status;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
