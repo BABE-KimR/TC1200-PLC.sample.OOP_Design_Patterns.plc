@@ -31,4 +31,5 @@ Parts of the implementated code are
  * Factory Method                   Kim Robbens, license included 
  * Adapter                          Kim Robbens, license included 
  * Facade                           Kim Robbens, license included 
+
 If any licenses are violated, let me know, I'll change whatever necessary appropriately.
